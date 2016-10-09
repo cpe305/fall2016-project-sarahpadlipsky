@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -30,6 +32,18 @@ public class Main extends ListActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, temporaryList);
 
+        ListView listView = getListView();
+        listView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+
+                    //TODO: Make sure it loads the correct group.
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent newActivity = new Intent(view.getContext(), GroupActivity.class);
+                        startActivity(newActivity);
+                    }
+                });
+
         setListAdapter(adapter);
     }
 
@@ -46,9 +60,10 @@ public class Main extends ListActivity {
     }
 
 
+    //On-Click method for "Add Group" button.
     public void createGroup(View view) {
 
-        Intent newActivity = new Intent(this, GroupActivity.class);
+        Intent newActivity = new Intent(this, AddGroupActivity.class);
         startActivity(newActivity);
     }
 
