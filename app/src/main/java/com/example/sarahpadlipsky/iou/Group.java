@@ -61,4 +61,12 @@ public class Group {
    public void setMoneySpent(double moneySpent) {
       totalMoneySpent = moneySpent;
    }
+
+   /**
+    * @return The name for the toString function
+    */
+   public String toString() {
+
+      return name;
+   }
 }
