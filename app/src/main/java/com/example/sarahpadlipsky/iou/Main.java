@@ -70,7 +70,6 @@ public class Main extends ListActivity {
 
     //On-Click method for "Add Group" button.
     public void createGroup(View view) {
-
         Intent newActivity = new Intent(this, AddGroupActivity.class);
         startActivity(newActivity);
     }

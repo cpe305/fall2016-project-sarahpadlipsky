@@ -22,5 +22,4 @@ public class GroupActivity extends Activity {
 
         //TODO: Access group from database.
     }
-
 }

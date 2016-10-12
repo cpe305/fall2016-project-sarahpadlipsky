@@ -9,24 +9,24 @@ package com.example.sarahpadlipsky.iou;
 import java.util.ArrayList;
 
 public class SuperUser {
-   // The super user's groups
-   private ArrayList<Group> groups;
+    // The super user's groups
+    private ArrayList<Group> groups;
 
-   public SuperUser() {
+    public SuperUser() {
       groups = new ArrayList<Group>();
    }
 
-   /**
-    * @return The super user's groups
-    */
-   public ArrayList<Group> getGroups() {
-      return groups;
-   }
+    /**
+     * @return The super user's groups
+     */
+    public ArrayList<Group> getGroups() {
+        return groups;
+    }
 
-   /**
-    * @param group The group to add to the super user's groups
-    */
-   public void addGroup(Group group) {
-      groups.add(group);
-   }
+    /**
+     * @param group The group to add to the super user's groups
+     */
+    public void addGroup(Group group) {
+        groups.add(group);
+    }
 }
