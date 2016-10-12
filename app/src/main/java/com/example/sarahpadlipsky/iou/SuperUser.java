@@ -1,3 +1,5 @@
+package com.example.sarahpadlipsky.iou;
+
 /**
  * Represents a super user of the IOU app.
  * @author cesiu
@@ -22,7 +24,7 @@ public class SuperUser {
    }
 
    /**
-    * @param The group to add to the super user's groups
+    * @param group The group to add to the super user's groups
     */
    public void addGroup(Group group) {
       groups.add(group);

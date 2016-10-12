@@ -1,3 +1,5 @@
+package com.example.sarahpadlipsky.iou;
+
 /**
  * Represents a user of the IOU app.
  * @author cesiu
@@ -37,11 +39,10 @@ public class User {
    }
 
    /**
-    * @param money The new amount of money the user has paid
+    * @param moneySpent The new amount of money the user has paid
     */
-   // TODO: Should the parameter be "moneySpent" for symmetry's sake?
-   public void setMoneySpent(double money) {
-      moneySpent = money;
+   public void setMoneySpent(double moneySpent) {
+      this.moneySpent = moneySpent;
    }
 
    /**
@@ -52,7 +53,7 @@ public class User {
    }
 
    /**
-    * @param The new amount of money the user still ows
+    * @param moneyOwed The new amount of money the user still ows
     */
    public void setMoneyOwed(double moneyOwed) {
       this.moneyOwed = moneyOwed;

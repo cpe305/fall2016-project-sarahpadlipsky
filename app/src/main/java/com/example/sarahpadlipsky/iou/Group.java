@@ -1,3 +1,5 @@
+package com.example.sarahpadlipsky.iou;
+
 /**
  * Represents a group of users of the IOU app.
  * @author cesiu
@@ -40,7 +42,7 @@ public class Group {
    }
 
    /**
-    * @param The user to add to the group
+    * @param user The user to add to the group
     */
    public void addUser(User user) {
       users.add(user);
@@ -54,7 +56,7 @@ public class Group {
    }
 
    /**
-    * @param money The new total amount of money the group has paid
+    * @param moneySpent The new total amount of money the group has paid
     */
    public void setMoneySpent(double moneySpent) {
       totalMoneySpent = moneySpent;
