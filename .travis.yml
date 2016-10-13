@@ -4,7 +4,7 @@ android:
     # Update Android SDK Tools
     - tools
 
-    - build-tools-24.0.1
+    - build-tools-24.02
     - android-24
 
     # Support library
