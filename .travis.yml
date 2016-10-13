@@ -1,26 +1,24 @@
 language: android
-jdk:
-  - oraclejdk8
 android:
   components:
-    # Update Android SDK Tools
-    - tools
-    - build-tools-21.0.2
-    - android-21
+    # Uncomment the lines below if you want to
+    # use the latest revision of Android SDK Tools
+    # - platform-tools
+    # - tools
 
+    # The BuildTools version used by your project
+    - build-tools-19.1.0
 
-    # Support library
-    - extra-android-support
+    # The SDK version used to compile your project
+    - android-22
+
+    # Additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
     - extra-android-m2repository
     - addon-google_apis-google-19
 
-
-before_install:
- - chmod +x gradlew
-
-# Emulator Management: Create, Start and Wait
-before_script:
-  - echo no | android create avd --force --name test --target android-21 --abi google_apis/armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window -no-boot-anim &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+    # Specify at least one system image,
+    # if you need to run emulator(s) during your tests
+    - sys-img-armeabi-v7a-android-22
+    - sys-img-x86-android-17
