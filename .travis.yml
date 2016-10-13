@@ -1,4 +1,6 @@
 language: android
+jdk:
+  - oraclejdk8
 android:
   components:
     # Update Android SDK Tools
@@ -10,6 +12,3 @@ android:
     # Support library
     - extra-android-support
     - extra-android-m2repository
-
-    jdk:
-      - oraclejdk8
