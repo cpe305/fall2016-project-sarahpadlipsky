@@ -12,10 +12,39 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class IOUDatabaseHelper extends SQLiteOpenHelper {
 
     // Database Info
-    private static final String DATABASE_NAME = "groupsDatabase";
+    private static final String DATABASE_NAME = "iouDatabase";
     private static final int DATABASE_VERSION = 1;
 
-    public IOUDatabaseHelper(Context context) {
+    //Table Names
+    private static final String TABLE_GROUPS = "groups";
+    private static final String TABLE_USERS = "users";
+
+    //Groups Table Columns
+    private static final String KEY_GROUPS_NAME = "name";
+    private static final String KEY_GROUPS_DESCRIPTION = "description";
+    private static final String KEY_GROUPS_TOTALMONEYSPENT = "totalMoneySpent";
+    private static final String KEY_GROUPS_USERS = "listOfUsers";
+
+    //Users Table Columns
+    private static final String KEY_USER_NAME = "name";
+    private static final String KEY_USER_MONEYSPENT = "moneySpent";
+    private static final String KEY_USER_MONEYOWED = "moneyOwed";
+
+    private static IOUDatabaseHelper sInstance;
+
+    public static synchronized IOUDatabaseHelper getInstance(Context context) {
+        // Uses application context to ensure that Activity's context is not leaked.
+        if (sInstance == null) {
+            sInstance = new IOUDatabaseHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+
+    /**
+     * Constructor should be private to prevent direct instantiation.
+     * Make a call to the static method "getInstance()" instead.
+     */
+    private IOUDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
