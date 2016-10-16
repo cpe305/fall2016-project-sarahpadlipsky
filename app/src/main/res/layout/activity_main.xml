@@ -17,8 +17,7 @@
           android:gravity = "center"
           android:layout_marginLeft="8dp"
           android:layout_marginTop="8dp"
-          android:textSize="20dp"
-          android:text="Groups:" />
+          android:textSize="20dp"/>
     </LinearLayout>
 
 

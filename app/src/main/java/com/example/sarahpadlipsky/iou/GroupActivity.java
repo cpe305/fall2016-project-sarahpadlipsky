@@ -18,7 +18,7 @@ public class GroupActivity extends Activity {
         setContentView(R.layout.group_activity);
 
         Intent intent = getIntent();
-        int position = intent.getIntExtra("Position", -1);
+        int position = intent.getIntExtra(getString(R.string.database_position), -1);
 
         //TODO: Access group from database.
     }

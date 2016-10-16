@@ -49,7 +49,7 @@ public class Main extends ListActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent newActivity = new Intent(view.getContext(), GroupActivity.class);
-                        newActivity.putExtra("Position", position);
+                        newActivity.putExtra(getString(R.string.database_position), position);
                         startActivity(newActivity);
                     }
                 });
@@ -64,7 +64,7 @@ public class Main extends ListActivity {
         TextView text = (TextView) findViewById(R.id.username);
         //TODO: get username from log-in
         String username = "Sarah";
-        text.setText(username + "'s Groups");
+        text.setText(username + getString(R.string.main_title));
     }
 
 
