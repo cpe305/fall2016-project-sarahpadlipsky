@@ -2,4 +2,5 @@
     <string name="app_name">IOU</string>
     <string name="group_name">name</string>
     <string name="main_title">\'s Groups</string>
+    <string name="add_group_button">Add group</string>
 </resources>

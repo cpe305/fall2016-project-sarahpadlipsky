@@ -21,7 +21,6 @@ import io.realm.RealmResults;
 public class Main extends ListActivity {
 
     private Realm realm;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +78,11 @@ public class Main extends ListActivity {
         text.setText(username + getString(R.string.main_title));
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
 
     // On-Click method for "Add Group" button.
     public void createGroup(View view) {

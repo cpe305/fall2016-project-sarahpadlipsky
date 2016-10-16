@@ -16,6 +16,7 @@ import io.realm.RealmResults;
 
 public class GroupActivity extends Activity {
 
+    private Realm realm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +25,7 @@ public class GroupActivity extends Activity {
         Intent intent = getIntent();
         String name = intent.getStringExtra(getString(R.string.group_name));
 
-        Realm realm = Realm.getDefaultInstance();
+        realm = Realm.getDefaultInstance();
         RealmResults<Group> list = realm.where(Group.class).equalTo(getString(R.string.group_name),
                 name).findAll();
         Group group = list.get(0);
@@ -32,5 +33,11 @@ public class GroupActivity extends Activity {
         //TEMPORARY
         text.setText("This is the group information for " + group.getName());
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }
