@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Text is temporary -->
     <TextView
+        android:id="@+id/groupName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="View of a group!"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

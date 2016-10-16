@@ -3,21 +3,26 @@ package com.example.sarahpadlipsky.iou;
 /**
  * Represents a group of users of the IOU app.
  * @author cesiu
- * @version October 10, 2016
+ * @author sarahpadlipsky
+ * @version October 16, 2016
  */
 
-import java.util.ArrayList;
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.Required;
 
-public class Group {
+public class Group extends RealmObject {
     // The name of the group
+    @Required
     private String name;
-    // The users in the group
-    private ArrayList<User> users;
     // The amount of money the group has paid
     private double totalMoneySpent;
+    // The users in the group
+    private RealmList<User> users;
+
 
     public Group() {
-        users = new ArrayList<User>();
+        users = new RealmList<>();
     }
 
     /**
@@ -37,7 +42,7 @@ public class Group {
     /**
      * @return The users in the group.
      */
-    public ArrayList<User> getUsers() {
+    public RealmList<User> getUsers() {
         return users;
     }
 

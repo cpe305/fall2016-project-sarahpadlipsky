@@ -9,37 +9,46 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Represents the main activity that shows the list of groups that the user is apart of.
  * @author sarahpadlipsky
- * @version October 11, 2016
+ * @version October 16, 2016
  */
 
 public class Main extends ListActivity {
+
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        realm = Realm.getDefaultInstance();
+        realm.executeTransaction(new Realm.Transaction() {
+                                     @Override
+                                     public void execute(Realm realm) {
+                                         //TODO: Groups will be added during the AddGroupActivity phase
+                                         // TEMPORARY
+                                         RealmResults<User> list = realm.where(User.class).equalTo
+                                                 ("isCurrentUser", true).findAll();
+                                         User user = list.get(0);
+                                         Group group = realm.createObject(Group.class);
+                                         group.setName("Temporary Group");
+                                         Group group2 = realm.createObject(Group.class);
+                                         group2.setName("Mom's Birthday");
+                                         user.addGroup(group);
+                                         user.addGroup(group2);
+                                         realm.copyToRealmOrUpdate(user);
 
-        //TODO: SuperUser will be defined in log-in phase
-        SuperUser superUser = new SuperUser();
-        //TODO: Groups will be added during the AddGroupActivity phase
-        Group tempGroup = new Group();
-        tempGroup.setName("Christmas Break");
-        Group tempGroup2 = new Group();
-        tempGroup2.setName("Apartment 1");
-        Group tempGroup3 = new Group();
-        tempGroup3.setName("Mom's Birthday Gift");
-        superUser.addGroup(tempGroup);
-        superUser.addGroup(tempGroup2);
-        superUser.addGroup(tempGroup3);
-
+                                     }
+                                 });
+        RealmResults<User> list = realm.where(User.class).equalTo("isCurrentUser", true).findAll();
+        User user = list.get(0);
         ArrayAdapter<Group> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, superUser.getGroups());
+                android.R.layout.simple_list_item_1, user.getGroups());
 
         ListView listView = getListView();
         listView.setOnItemClickListener(
@@ -48,8 +57,10 @@ public class Main extends ListActivity {
                     //TODO: Make sure it loads the correct group.
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Group currentGroup = (Group) parent.getItemAtPosition(position);
                         Intent newActivity = new Intent(view.getContext(), GroupActivity.class);
-                        newActivity.putExtra(getString(R.string.database_position), position);
+                        // Send group name to next intent for querying purposes.
+                        newActivity.putExtra(getString(R.string.group_name), currentGroup.getName());
                         startActivity(newActivity);
                     }
                 });
@@ -62,8 +73,9 @@ public class Main extends ListActivity {
         super.onStart();
         //Sets title of main page
         TextView text = (TextView) findViewById(R.id.username);
-        //TODO: get username from log-in
-        String username = "Sarah";
+        RealmResults<User> list = realm.where(User.class).equalTo("isCurrentUser", true).findAll();
+        User user = list.get(0);
+        String username = user.getName();
         text.setText(username + getString(R.string.main_title));
     }
 
