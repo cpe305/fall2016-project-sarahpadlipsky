@@ -5,7 +5,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * To work on unit tests, switch the Test Artifact in the Build Variants view.
+ * Test class for Group.
+ * @author sonianara
+ * @author sarahpadlipsky
+ * @version October 20, 2016
  */
 public class GroupTests {
 	Group group = new Group();
@@ -35,20 +38,20 @@ public class GroupTests {
     public void testMoneySpent() {
     	System.out.println("-----------------------------------------------");
         System.out.println("Testing the amount of money the group has paid");
-    	group.setMoneySpent("139");
-        assertEquals("139", group.getMoneySpent());
+    	group.setMoneySpent(139);
+        assertEquals(139, group.getMoneySpent());
     }
 
 	@Test
     public void testMoneySpent1() {
-    	group.setMoneySpent("10.294");
-        assertEquals("10.294", group.getMoneySpent());
+    	group.setMoneySpent(10.294);
+        assertEquals(10.294, group.getMoneySpent(), 0);
     }
 
 	@Test
     public void testMoneySpent2() {
-    	group.setMoneySpent("-204");
-        assertEquals("-204", group.getMoneySpent());
+    	group.setMoneySpent(-204);
+        assertEquals(-204, group.getMoneySpent(), 0);
     }
 
     /*

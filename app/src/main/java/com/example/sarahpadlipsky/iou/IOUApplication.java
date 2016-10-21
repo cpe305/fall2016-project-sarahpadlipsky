@@ -23,6 +23,8 @@ public class IOUApplication extends Application {
         Realm.setDefaultConfiguration(realmConfiguration);
         Realm realm = Realm.getDefaultInstance();
 
+        System.out.println("PATH " + realm.getPath());
+
         // Sets current user is the database.
         realm.executeTransaction(new Realm.Transaction() {
             @Override

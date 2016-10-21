@@ -5,7 +5,10 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * To work on unit tests, switch the Test Artifact in the Build Variants view.
+ * Test class for User.
+ * @author sonianara
+ * @author sarahpadlipsky
+ * @version October 20, 2016
  */
 public class UserTests {
 
@@ -14,8 +17,6 @@ public class UserTests {
     /* Testing the user's name */
     @Test
     public void testUserName() {
-        System.out.println("----------------- TESTING ---------------------");
-        System.out.println("Testing the user's name");
     	user.setName("Jane");
         assertEquals("Jane", user.getName());
     }
@@ -34,56 +35,50 @@ public class UserTests {
 
 	@Test
     public void testMoneySpent() {
-        System.out.println("-----------------------------------------------");
-        System.out.println("Testing the amount of money the user has paid");
-    	user.setMoneySpent("500");
-        assertEquals("500", user.getMoneySpent());
+    	user.setMoneySpent(500);
+        assertEquals(500, user.getMoneySpent(), 0);
     }
 
 	@Test
     public void testMoneySpent1() {
-    	user.setMoneySpent("30.555");
-        assertEquals("30.555", user.getMoneySpent());
+    	user.setMoneySpent(30.555);
+        assertEquals(30.555, user.getMoneySpent(), 0);
     }
 
 	@Test
     public void testMoneySpent2() {
-    	user.setMoneySpent("-200");
-        assertEquals("-200", user.getMoneySpent());
+    	user.setMoneySpent(-200);
+        assertEquals(-200, user.getMoneySpent(), 0);
     }
 
 	@Test
     public void testMoneyOwed() {
-        System.out.println("-----------------------------------------------");
-        System.out.println("Testing the amount of money the user still owes");
-    	user.setMoneyOwed("300");
-        assertEquals("300", user.getMoneyOwed());
+    	user.setMoneyOwed(300);
+        assertEquals(300, user.getMoneyOwed(), 0);
     }
 
 	@Test
     public void testMoneyOwed1() {
-    	user.setMoneyOwed("20.333");
-        assertEquals("20.333", user.getMoneyOwed());
+    	user.setMoneyOwed(20.333);
+        assertEquals(20.333, user.getMoneyOwed(), 0);
     }
 
 	@Test
     public void testMoneyOwed2() {
-    	user.setMoneyOwed("-100");
-        assertEquals("-100", user.getMoneyOwed());
+    	user.setMoneyOwed(-100);
+        assertEquals(-100, user.getMoneyOwed(), 0);
     }
 
 	@Test
     public void testCurrentUser() {
-        System.out.println("-----------------------------------------------");
-        System.out.println("Testing the current user");
-    	user.setIsCurrentUser("true");
-        assertEquals("true", user.getIsCurrentUser());
+    	user.setIsCurrentUser(true);
+        assertEquals(true, user.getIsCurrentUser());
     }
 
     @Test
     public void testCurrentUser1() {
-    	user.setIsCurrentUser("false");
-        assertEquals("false", user.getIsCurrentUser());
+    	user.setIsCurrentUser(false);
+        assertEquals(true, user.getIsCurrentUser());
     
     }
     /*
