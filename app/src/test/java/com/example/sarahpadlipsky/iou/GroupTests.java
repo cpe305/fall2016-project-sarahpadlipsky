@@ -1,6 +1,9 @@
 package com.example.sarahpadlipsky.iou;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import io.realm.RealmList;
 
 import static org.junit.Assert.*;
 
@@ -11,13 +14,17 @@ import static org.junit.Assert.*;
  * @version October 20, 2016
  */
 public class GroupTests {
-	Group group = new Group();
+
+    Group group;
+
+    @Before
+    public void instanceGroup() {
+        group = new Group();
+    }
 
 	/* Test all the get and set methods in Group.java */
     @Test
     public void testGroupName() {
-    	System.out.println("----------------- TESTING ---------------------");
-        System.out.println("Testing the group's name");
     	group.setName("Joe");
         assertEquals("Joe", group.getName());
     }
@@ -36,10 +43,8 @@ public class GroupTests {
 
 	@Test
     public void testMoneySpent() {
-    	System.out.println("-----------------------------------------------");
-        System.out.println("Testing the amount of money the group has paid");
     	group.setMoneySpent(139);
-        assertEquals(139, group.getMoneySpent());
+        assertEquals(139, group.getMoneySpent(),0);
     }
 
 	@Test
@@ -54,7 +59,7 @@ public class GroupTests {
         assertEquals(-204, group.getMoneySpent(), 0);
     }
 
-    /*
+
     @Test
     public void testGroup() {
     	User user1 = new User();
@@ -66,13 +71,22 @@ public class GroupTests {
     	userGroup.add(user2);
     	userGroup.add(user3);
 
+        group.addUser(user1);
+        group.addUser(user2);
+        group.addUser(user3);
 
-    	System.out.println("getting users = " + userGroup.getUsers());
-        //assertEquals("-true", user.getIsCurrentUser());
+        assertEquals(group.getUsers(), userGroup);
     }
-    */
 
-    public static void main(String []args) {
+    @Test
+    public void testToString() {
+        String name = "Sarah";
+        group.setName(name);
+        assertEquals(group.toString(), name);
+    }
+
+
+    public static void main(String [] args) {
     	org.junit.runner.JUnitCore.main("GroupTests");
     }
 }

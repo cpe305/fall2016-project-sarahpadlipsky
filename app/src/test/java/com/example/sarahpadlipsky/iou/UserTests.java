@@ -2,6 +2,10 @@ package com.example.sarahpadlipsky.iou;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
+import io.realm.RealmList;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,7 +18,6 @@ public class UserTests {
 
     User user = new User();
 	
-    /* Testing the user's name */
     @Test
     public void testUserName() {
     	user.setName("Jane");
@@ -78,24 +81,24 @@ public class UserTests {
     @Test
     public void testCurrentUser1() {
     	user.setIsCurrentUser(false);
-        assertEquals(true, user.getIsCurrentUser());
-    
+        assertEquals(false, user.getIsCurrentUser());
     }
-    /*
+
 	@Test
     public void testUserGroup() {
     	Group testGroup1 = new Group();
-    	Group testGroup2 = new Group();
-    	Group testGroup3 = new Group();
+        Group testGroup2 = new Group();
+
+        RealmList<Group> testList = new RealmList<>();
+        testList.add(testGroup1);
+        testList.add(testGroup2);
 
     	user.addGroup(testGroup1);
-    	user.addGroup(testGroup2);
-    	user.addGroup(testGroup3);
+        user.addGroup(testGroup2);
 
-    	System.out.println("getting groups = " + user.getGroups());
-        //assertEquals("-true", user.getIsCurrentUser());
+    	assertEquals(testList, user.getGroups());
     }
-    */
+
 
     public static void main(String [] args) {
         org.junit.runner.JUnitCore.main("UserTests");
