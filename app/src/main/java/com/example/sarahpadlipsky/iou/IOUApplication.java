@@ -12,9 +12,13 @@ import io.realm.RealmConfiguration;
  */
 public class IOUApplication extends Application {
 
+    // Database 
+    Realm realm;
+
     /**
      * Android lifecycle function. Called when application is opened for the first time.
-     */    @Override
+     */
+    @Override
     public void onCreate() {
         super.onCreate();
         Realm.init(this.getBaseContext());
@@ -23,7 +27,7 @@ public class IOUApplication extends Application {
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder().deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(realmConfiguration);
-        Realm realm = Realm.getDefaultInstance();
+        realm = Realm.getDefaultInstance();
 
         // Sets current user is the database.
         realm.executeTransaction(new Realm.Transaction() {
@@ -41,4 +45,14 @@ public class IOUApplication extends Application {
         realm.close();
 
     }
+
+    /**
+     * Android lifecycle function. Called when application is completely closed.
+     */
+    public void onTerminate() {
+        super.onTerminate();
+        realm.close();
+    }
+
 }
+

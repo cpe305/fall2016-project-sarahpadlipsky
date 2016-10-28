@@ -88,6 +88,15 @@ public class Main extends ListActivity {
     }
 
     /**
+     * Android lifecycle function. Called when activity is closed.
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
+    }
+
+    /**
      * Android lifecycle function. Called when activity is re-opened.
      */
     @Override
@@ -103,11 +112,11 @@ public class Main extends ListActivity {
     }
 
     /**
-     * Android lifecycle function. Called when activity is closed.
+     * Android lifecycle function. Called when activity is paused.
      */
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         realm.close();
     }
 

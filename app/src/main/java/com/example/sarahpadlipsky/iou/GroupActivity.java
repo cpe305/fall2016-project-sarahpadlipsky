@@ -68,4 +68,13 @@ public class GroupActivity extends ListActivity {
         realm = Realm.getDefaultInstance();
     }
 
+    /**
+     * Android lifecycle function. Called when activity is paused.
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+        realm.close();
+    }
+
 }
