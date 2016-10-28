@@ -66,7 +66,6 @@ public class Group extends RealmObject {
      * @param user The user to add to the group
      */
     public void addUser(User user) {
-        System.out.println("ADDED USER");
         users.add(user);
     }
 

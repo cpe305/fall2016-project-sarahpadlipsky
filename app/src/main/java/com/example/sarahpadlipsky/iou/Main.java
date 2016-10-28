@@ -9,56 +9,66 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 import io.realm.Realm;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 /**
  * Represents the main activity that shows the list of groups that the user is apart of.
  * @author sarahpadlipsky
- * @version October 16, 2016
+ * @version October 28, 2016
  */
 
 public class Main extends ListActivity {
 
+
+    // Database connection
     private Realm realm;
+
+    /**
+     * Android lifecycle function. Called when activity is opened for the first time.
+     * @param savedInstanceState Lifecycle parameter
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         realm = Realm.getDefaultInstance();
-        realm.executeTransaction(new Realm.Transaction() {
-                                     @Override
-                                     public void execute(Realm realm) {
-                                         //TODO: Groups will be added during the AddGroupActivity phase
-                                         // TEMPORARY
-                                         RealmResults<User> list = realm.where(User.class).equalTo
-                                                 ("isCurrentUser", true).findAll();
-                                         User user = list.get(0);
-                                         User user2 = new User();
-                                         user2.setName("Bob");
-                                         user2.setMoneySpent(15.00);
-                                         user.setMoneySpent(20.00);
-                                         Group group = realm.createObject(Group.class);
-                                         group.setName("Temporary Group");
-                                         Group group2 = realm.createObject(Group.class);
-                                         group2.setName("Mom's Birthday");
-                                         group2.setDescription("Money pulled together to get Mom's birthday gift");
-                                         group2.addUser(user);
-                                         group2.addUser(user2);
-                                         user.addGroup(group);
-                                         user.addGroup(group2);
-                                         realm.copyToRealmOrUpdate(user);
 
-                                     }
-                                 });
+        // Sets group and user information.
+        // TODO: Temporary. Delete.
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                //TODO: Groups will be added during the AddGroupActivity phase
+                // TEMPORARY
+                RealmResults<User> list = realm.where(User.class).equalTo
+                        ("isCurrentUser", true).findAll();
+                User user = list.get(0);
+                User user2 = new User();
+                user2.setName("Bob");
+                user2.setMoneySpent(15.00);
+                user.setMoneySpent(20.00);
+                Group group = realm.createObject(Group.class);
+                group.setName("Temporary Group");
+                Group group2 = realm.createObject(Group.class);
+                group2.setName("Mom's Birthday");
+                group2.setDescription("Money pulled together to get Mom's birthday gift");
+                group2.addUser(user);
+                group2.addUser(user2);
+                user.addGroup(group);
+                user.addGroup(group2);
+                realm.copyToRealmOrUpdate(user);
+            }
+        });
+
+        // Gets current user.
+        // TODO: Find better way to find current user.
         RealmResults<User> list = realm.where(User.class).equalTo("isCurrentUser", true).findAll();
         User user = list.get(0);
         ArrayAdapter<Group> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, user.getGroups());
 
+        // Sets click listener for list items.
         ListView listView = getListView();
         listView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
@@ -74,10 +84,12 @@ public class Main extends ListActivity {
                         startActivity(newActivity);
                     }
                 });
-
         setListAdapter(adapter);
     }
 
+    /**
+     * Android lifecycle function. Called when activity is re-opened.
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -90,25 +102,33 @@ public class Main extends ListActivity {
         text.setText(username + getString(R.string.main_title));
     }
 
+    /**
+     * Android lifecycle function. Called when activity is closed.
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
         realm.close();
     }
 
-    // On-Click method for "Add Group" button.
+    /**
+     * On-Click method for "Add Group" button"
+     * @param view View of the current activity
+     */
     public void createGroup(View view) {
         Intent newActivity = new Intent(this, AddGroupActivity.class);
         startActivity(newActivity);
     }
 
-    // Delete method to clear database while developing.
     // TODO: Delete method.
+    /**
+     * Delete method to clear groups and users while developing.
+     */
     private void delete() {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                RealmResults<Group> result = realm.where(Group.class).equalTo("name", "Temporary Group").findAll();
+                RealmResults<Group> result = realm.where(Group.class).findAll();
                 result.deleteAllFromRealm();
             }
         });
@@ -116,9 +136,10 @@ public class Main extends ListActivity {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                RealmResults<Group> result = realm.where(Group.class).equalTo("name", "Mom's Birthday").findAll();
+                RealmResults<User> result = realm.where(User.class).findAll();
                 result.deleteAllFromRealm();
             }
         });
+
     }
 }

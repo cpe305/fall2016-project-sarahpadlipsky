@@ -4,16 +4,17 @@ import android.app.Application;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.RealmResults;
 
 /**
  * IOU Application
  * @author sarahpadlipsky
- * @version October 16, 2016
+ * @version October 28, 2016
  */
 public class IOUApplication extends Application {
 
-    @Override
+    /**
+     * Android lifecycle function. Called when application is opened for the first time.
+     */    @Override
     public void onCreate() {
         super.onCreate();
         Realm.init(this.getBaseContext());
@@ -24,15 +25,12 @@ public class IOUApplication extends Application {
         Realm.setDefaultConfiguration(realmConfiguration);
         Realm realm = Realm.getDefaultInstance();
 
-        System.out.println("PATH " + realm.getPath());
-
         // Sets current user is the database.
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
                 long num = realm.where(User.class).count();
                 // TODO: Should this check if it should update instead?
-                System.out.println("NUMBER OF USERS " + num);
                 User user = realm.createObject(User.class,Long.toString(num));
                 //TODO: Get username from log-in.
                 user.setName("Sarah");
