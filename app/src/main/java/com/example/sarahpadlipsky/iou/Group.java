@@ -15,6 +15,8 @@ public class Group extends RealmObject {
     // The name of the group
     @Required
     private String name;
+    // The description of the group
+    private String description;
     // The amount of money the group has paid
     private double totalMoneySpent;
     // The users in the group
@@ -40,6 +42,20 @@ public class Group extends RealmObject {
     }
 
     /**
+     * @return The description of the group
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
+     * @param description The description explaining the purpose of the group
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    /**
      * @return The users in the group.
      */
     public RealmList<User> getUsers() {
@@ -50,6 +66,7 @@ public class Group extends RealmObject {
      * @param user The user to add to the group
      */
     public void addUser(User user) {
+        System.out.println("ADDED USER");
         users.add(user);
     }
 

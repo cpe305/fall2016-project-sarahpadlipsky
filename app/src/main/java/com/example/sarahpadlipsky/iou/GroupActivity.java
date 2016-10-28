@@ -1,11 +1,16 @@
 package com.example.sarahpadlipsky.iou;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 /**
@@ -14,7 +19,7 @@ import io.realm.RealmResults;
  * @version October 16, 2016
  */
 
-public class GroupActivity extends Activity {
+public class GroupActivity extends ListActivity {
 
     private Realm realm;
     @Override
@@ -31,8 +36,19 @@ public class GroupActivity extends Activity {
         Group group = list.get(0);
         TextView text = (TextView) findViewById(R.id.groupName);
         //TEMPORARY
-        text.setText("This is the group information for " + group.getName());
+        text.setText(group.getName());
 
+        TextView groupDescription = (TextView) findViewById(R.id.groupDescription);
+        groupDescription.setText(group.getDescription());
+
+        ArrayAdapter<User> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, group.getUsers());
+
+        RealmList<User> groupList = group.getUsers();
+
+        System.out.println("LIST OF GROUPS " + groupList);
+
+        setListAdapter(adapter);
     }
 
     @Override
@@ -40,4 +56,11 @@ public class GroupActivity extends Activity {
         super.onDestroy();
         realm.close();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        realm = Realm.getDefaultInstance();
+    }
+
 }

@@ -9,7 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 /**
@@ -34,10 +37,17 @@ public class Main extends ListActivity {
                                          RealmResults<User> list = realm.where(User.class).equalTo
                                                  ("isCurrentUser", true).findAll();
                                          User user = list.get(0);
+                                         User user2 = new User();
+                                         user2.setName("Bob");
+                                         user2.setMoneySpent(15.00);
+                                         user.setMoneySpent(20.00);
                                          Group group = realm.createObject(Group.class);
                                          group.setName("Temporary Group");
                                          Group group2 = realm.createObject(Group.class);
                                          group2.setName("Mom's Birthday");
+                                         group2.setDescription("Money pulled together to get Mom's birthday gift");
+                                         group2.addUser(user);
+                                         group2.addUser(user2);
                                          user.addGroup(group);
                                          user.addGroup(group2);
                                          realm.copyToRealmOrUpdate(user);
@@ -60,6 +70,7 @@ public class Main extends ListActivity {
                         Intent newActivity = new Intent(view.getContext(), GroupActivity.class);
                         // Send group name to next intent for querying purposes.
                         newActivity.putExtra(getString(R.string.group_name), currentGroup.getName());
+                        realm.close();
                         startActivity(newActivity);
                     }
                 });
@@ -70,6 +81,7 @@ public class Main extends ListActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        realm = Realm.getDefaultInstance();
         //Sets title of main page
         TextView text = (TextView) findViewById(R.id.username);
         RealmResults<User> list = realm.where(User.class).equalTo("isCurrentUser", true).findAll();
@@ -90,4 +102,23 @@ public class Main extends ListActivity {
         startActivity(newActivity);
     }
 
+    // Delete method to clear database while developing.
+    // TODO: Delete method.
+    private void delete() {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<Group> result = realm.where(Group.class).equalTo("name", "Temporary Group").findAll();
+                result.deleteAllFromRealm();
+            }
+        });
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<Group> result = realm.where(Group.class).equalTo("name", "Mom's Birthday").findAll();
+                result.deleteAllFromRealm();
+            }
+        });
+    }
 }

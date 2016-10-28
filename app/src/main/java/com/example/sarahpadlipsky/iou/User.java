@@ -101,4 +101,11 @@ public class User extends RealmObject {
     public boolean getIsCurrentUser() {
         return isCurrentUser;
     }
+
+    /**
+     * @return The name for the toString function
+     */
+    public String toString() {
+        return name + ": $" + getMoneySpent();
+    }
 }
