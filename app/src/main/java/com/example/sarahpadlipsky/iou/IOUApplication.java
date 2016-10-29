@@ -41,9 +41,6 @@ public class IOUApplication extends Application {
                 user.setIsCurrentUser(true);
             }
         });
-
-        realm.close();
-
     }
 
     /**

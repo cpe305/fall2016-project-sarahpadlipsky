@@ -17,9 +17,7 @@ import io.realm.RealmResults;
  * @author sarahpadlipsky
  * @version October 28, 2016
  */
-
 public class Main extends ListActivity {
-
 
     // Database connection
     private Realm realm;
@@ -122,6 +120,5 @@ public class Main extends ListActivity {
                 result.deleteAllFromRealm();
             }
         });
-
     }
 }

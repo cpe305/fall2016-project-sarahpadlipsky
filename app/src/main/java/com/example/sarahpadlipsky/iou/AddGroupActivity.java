@@ -1,15 +1,11 @@
 package com.example.sarahpadlipsky.iou;
 
-import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-
-import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -18,9 +14,8 @@ import io.realm.RealmResults;
 /**
  * Represents the activity that takes care of creating a group.
  * @author sarahpadlipsky
- * @version October 11, 2016
+ * @version October 29, 2016
  */
-
 public class AddGroupActivity extends ListActivity {
 
     // Database connection.
