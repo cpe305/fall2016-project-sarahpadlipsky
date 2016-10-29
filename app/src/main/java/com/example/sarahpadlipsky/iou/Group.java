@@ -68,7 +68,7 @@ public class Group extends RealmObject {
     public void addUser(User user) {
         users.add(user);
     }
-
+    
     /**
      * @return The total amount of money the group has paid
      */

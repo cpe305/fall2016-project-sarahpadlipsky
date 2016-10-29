@@ -34,33 +34,6 @@ public class Main extends ListActivity {
         setContentView(R.layout.activity_main);
         realm = Realm.getDefaultInstance();
 
-        // Sets group and user information.
-        // TODO: Temporary. Delete.
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                //TODO: Groups will be added during the AddGroupActivity phase
-                // TEMPORARY
-                RealmResults<User> list = realm.where(User.class).equalTo
-                        ("isCurrentUser", true).findAll();
-                User user = list.get(0);
-                User user2 = new User();
-                user2.setName("Bob");
-                user2.setMoneySpent(15.00);
-                user.setMoneySpent(20.00);
-                Group group = realm.createObject(Group.class);
-                group.setName("Temporary Group");
-                Group group2 = realm.createObject(Group.class);
-                group2.setName("Mom's Birthday");
-                group2.setDescription("Money pulled together to get Mom's birthday gift");
-                group2.addUser(user);
-                group2.addUser(user2);
-                user.addGroup(group);
-                user.addGroup(group2);
-                realm.copyToRealmOrUpdate(user);
-            }
-        });
-
         // Gets current user.
         // TODO: Find better way to find current user.
         RealmResults<User> list = realm.where(User.class).equalTo("isCurrentUser", true).findAll();
@@ -109,8 +82,8 @@ public class Main extends ListActivity {
         User user = list.get(0);
         String username = user.getName();
         text.setText(username + getString(R.string.main_title));
-    }
 
+    }
     /**
      * Android lifecycle function. Called when activity is paused.
      */

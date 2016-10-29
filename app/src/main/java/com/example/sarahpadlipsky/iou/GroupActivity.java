@@ -46,7 +46,7 @@ public class GroupActivity extends ListActivity {
 
         ArrayAdapter<User> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, group.getUsers());
-
+        
         setListAdapter(adapter);
     }
 

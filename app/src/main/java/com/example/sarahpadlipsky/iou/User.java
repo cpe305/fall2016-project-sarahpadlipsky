@@ -106,6 +106,6 @@ public class User extends RealmObject {
      * @return The name for the toString function
      */
     public String toString() {
-        return name + ": $" + getMoneySpent();
+        return name;
     }
 }
