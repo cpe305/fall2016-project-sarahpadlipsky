@@ -1,12 +1,14 @@
 package com.example.sarahpadlipsky.iou;
 
 /**
- * Created by SarahPadlipsky on 10/30/16.
+ * Represents the current User using the eapplication.
+ * @author sarahpadlipsky
+ * @version October 30, 2016
  */
 public class CurrentUser {
-    User currentUser;
+  User currentUser;
 
-    public User getCurrentUser() {
-        return currentUser;
-    }
+  public User getCurrentUser() {
+    return currentUser;
+  }
 }

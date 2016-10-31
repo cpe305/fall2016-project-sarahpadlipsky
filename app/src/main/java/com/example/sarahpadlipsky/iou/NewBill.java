@@ -8,4 +8,5 @@ import android.app.ListActivity;
  * @version October 28, 2016
  */
 public class NewBill extends ListActivity {
+
 }
