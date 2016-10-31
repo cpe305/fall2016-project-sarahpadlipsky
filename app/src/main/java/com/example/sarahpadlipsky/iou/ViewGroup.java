@@ -15,7 +15,7 @@ import io.realm.RealmResults;
  * @version October 28, 2016
  */
 
-public class GroupActivity extends ListActivity {
+public class ViewGroup extends ListActivity {
 
     // Database connection
     private Realm realm;
@@ -27,7 +27,7 @@ public class GroupActivity extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.group_activity);
+        setContentView(R.layout.view_group_activity);
 
         // Gets group name from main activity.
         Intent intent = getIntent();

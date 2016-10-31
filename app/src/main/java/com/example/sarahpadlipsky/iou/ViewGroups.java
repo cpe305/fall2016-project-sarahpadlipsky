@@ -17,7 +17,7 @@ import io.realm.RealmResults;
  * @author sarahpadlipsky
  * @version October 28, 2016
  */
-public class Main extends ListActivity {
+public class ViewGroups extends ListActivity {
 
     // Database connection
     private Realm realm;
@@ -29,7 +29,7 @@ public class Main extends ListActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.view_groups_activity);
         realm = Realm.getDefaultInstance();
 
         // Gets current user.
@@ -48,7 +48,7 @@ public class Main extends ListActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Group currentGroup = (Group) parent.getItemAtPosition(position);
-                        Intent newActivity = new Intent(view.getContext(), GroupActivity.class);
+                        Intent newActivity = new Intent(view.getContext(), ViewGroup.class);
                         // Send group name to next intent for querying purposes.
                         newActivity.putExtra(getString(R.string.group_name), currentGroup.getName());
                         realm.close();
