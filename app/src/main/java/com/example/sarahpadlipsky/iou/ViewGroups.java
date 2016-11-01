@@ -77,8 +77,7 @@ public class ViewGroups extends ListActivity {
     //Sets title of main page
     TextView text = (TextView) findViewById(R.id.username);
     RealmResults<User> list = realm.where(User.class).equalTo("isCurrentUser", true).findAll();
-    User user = list.get(0);
-    String username = user.getName();
+    String username = list.get(0).getName();
     text.setText(username + getString(R.string.main_title));
   }
 
