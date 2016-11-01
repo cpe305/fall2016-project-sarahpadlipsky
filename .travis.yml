@@ -4,7 +4,6 @@ sudo: false
  
 android:
   components:
-    - tools
     - platform-tools
     - tools
     - build-tools-24.0.2

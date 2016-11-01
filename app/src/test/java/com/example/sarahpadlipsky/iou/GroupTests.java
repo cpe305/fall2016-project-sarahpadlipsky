@@ -26,7 +26,7 @@ public class GroupTests {
     @Test
     public void testGroupName() {
     	group.setName("Joe");
-        assertEquals("Joel", group.getName());
+        assertEquals("Joe", group.getName());
     }
 
 	@Test
