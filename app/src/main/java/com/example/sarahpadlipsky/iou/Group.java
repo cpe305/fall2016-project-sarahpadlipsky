@@ -1,16 +1,15 @@
 package com.example.sarahpadlipsky.iou;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.Required;
+
 /**
  * Represents a group of users of the IOU app.
  * @author cesiu
  * @author sarahpadlipsky
  * @version October 16, 2016
  */
-
-import io.realm.RealmList;
-import io.realm.RealmObject;
-import io.realm.annotations.Required;
-
 public class Group extends RealmObject {
   // The name of the group
   @Required
@@ -22,6 +21,9 @@ public class Group extends RealmObject {
   // The users in the group
   private RealmList<User> users;
 
+  /**
+   * Constructor for a group. Initializes the users list.
+   */
   public Group() {
         users = new RealmList<>();
     }

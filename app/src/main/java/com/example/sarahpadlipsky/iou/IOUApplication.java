@@ -46,6 +46,7 @@ public class IOUApplication extends Application {
   /**
    * Android lifecycle function. Called when application is completely closed.
    */
+  @Override
   public void onTerminate() {
     super.onTerminate();
     realm.close();

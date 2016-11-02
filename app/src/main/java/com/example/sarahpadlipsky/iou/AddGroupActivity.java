@@ -3,7 +3,6 @@ package com.example.sarahpadlipsky.iou;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
@@ -66,15 +65,14 @@ public class AddGroupActivity extends ListActivity {
 
     /**
      * On-Click method for "Add Group" button"
-     * @param view View of the current activity
      */
-    public void submitGroup(View view) {
+    public void submitGroup() {
       // Gets the name of the group.
       EditText nameEditField = (EditText) findViewById(R.id.nameOfGroup);
       final String groupName = nameEditField.getText().toString();
       // Gets the description of the group.
       EditText descriptionEditField = (EditText) findViewById(R.id.descriptionOfGroup);
-      final String groupDescription = (String) descriptionEditField.getText().toString();
+      final String groupDescription = descriptionEditField.getText().toString();
 
       // Submits information to database.
       realm.executeTransaction(new Realm.Transaction() {
@@ -101,9 +99,8 @@ public class AddGroupActivity extends ListActivity {
 
     /**
      * On-Click method for "Add User" button"
-     * @param view View of the current activity
      */
-    public void submitUser(View view) {
+    public void submitUser() {
       // Gets new user name.
       EditText userEditField = (EditText) findViewById(R.id.addUser);
       final String userName = userEditField.getText().toString();

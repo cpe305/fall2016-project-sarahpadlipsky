@@ -92,9 +92,8 @@ public class ViewGroups extends ListActivity {
 
   /**
    * On-Click method for "Add Group" button"
-   * @param view View of the current activity
    */
-  public void createGroup(View view) {
+  public void createGroup() {
     Intent newActivity = new Intent(this, AddGroupActivity.class);
     startActivity(newActivity);
   }

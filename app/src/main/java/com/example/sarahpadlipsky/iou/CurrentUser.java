@@ -6,9 +6,9 @@ package com.example.sarahpadlipsky.iou;
  * @version October 30, 2016
  */
 public class CurrentUser {
-  User currentUser;
+  private User appCurrentUser;
 
   public User getCurrentUser() {
-    return currentUser;
+    return appCurrentUser;
   }
 }

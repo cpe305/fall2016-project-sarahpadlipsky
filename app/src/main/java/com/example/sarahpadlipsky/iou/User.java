@@ -27,6 +27,9 @@ public class User extends RealmObject {
   // The groups the user belongs to
   private RealmList<Group> groups;
 
+  /**
+   * Constructor for the user class. Initializes the list of groups.
+   */
   public User() {
     groups = new RealmList<>();
   }
@@ -104,6 +107,7 @@ public class User extends RealmObject {
   /**
    * @return The name for the toString function
    */
+  @Override
   public String toString() {
     return name;
   }
