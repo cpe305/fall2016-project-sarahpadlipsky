@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/IOU.iml" filepath="$PROJECT_DIR$/IOU.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fall2016-project-sarahpadlipsky.iml" filepath="$PROJECT_DIR$/fall2016-project-sarahpadlipsky.iml" />
     </modules>
   </component>
 </project>

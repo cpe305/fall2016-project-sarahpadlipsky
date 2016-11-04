@@ -11,4 +11,6 @@ public class CurrentUser {
   public User getCurrentUser() {
     return appCurrentUser;
   }
+
+  public void setCurrentUser(User user) { appCurrentUser = user; }
 }
