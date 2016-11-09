@@ -21,3 +21,4 @@ before_script:
 
 script:
    - ./gradlew test
+   - ./gradlew sonarqube -Dsonar.host.url=http://smartr.cs.hm.edu:9000
