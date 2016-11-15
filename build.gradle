@@ -14,12 +14,42 @@ buildscript {
 plugins {
     id "org.sonarqube" version "2.2"
 }
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "Java :: Simple Project :: SonarQube Scanner for Gradle"
+        property "sonar.projectKey", "org.sonarqube:java-gradle-simple"
+        property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
+    }
+}
+
 allprojects {
     repositories {
         jcenter()
     }
 }
+
+test {
+    ignoreFailures = true
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+repositories {
+    repositories {
+        maven {
+            url "http://repo1.maven.org/maven2/"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
 }
 
