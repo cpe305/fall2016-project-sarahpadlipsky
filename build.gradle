@@ -20,10 +20,9 @@ allprojects {
     repositories {
         jcenter()
     }
-}
-
-test {
-    ignoreFailures = true
+    tasks.withType(Test) {
+        ignoreFailures = true
+    }
 }
 
 dependencies {
