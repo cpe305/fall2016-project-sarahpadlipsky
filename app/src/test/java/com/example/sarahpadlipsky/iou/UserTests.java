@@ -99,6 +99,13 @@ public class UserTests {
     	assertEquals(testList, user.getGroups());
     }
 
+  @Test
+  public void testToString() {
+    String name = "name";
+    user.setName(name);
+
+    assertEquals(user.toString(), name);
+  }
 
     public static void main(String [] args) {
         org.junit.runner.JUnitCore.main("UserTests");

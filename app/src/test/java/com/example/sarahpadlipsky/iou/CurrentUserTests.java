@@ -16,28 +16,12 @@ public class CurrentUserTests {
   CurrentUser currUser = new CurrentUser();
 
   @Test
-  public void testCurrentUser1() {
+  public void testCurrentUser() {
     user.setName("Jane");
     currUser.setCurrentUser(user);
     assertEquals(user, currUser.getCurrentUser());
   }
 
-  @Test
-  public void testCurrentUser2() {
-    user.setName("Paula");
-    currUser.setCurrentUser(user);
-    User temp = currUser.getCurrentUser();
-    assertEquals("Paula", temp.getName());
-  }
-
-  @Test
-  public void testCurrentUser3() {
-    user.setName("");
-    currUser.setCurrentUser(user);
-    User temp = currUser.getCurrentUser();
-    temp.setName("Paula");
-    assertEquals("Paula", temp.getName());
-  }
 
   @Test
   public void testMoneySpent() {
@@ -48,27 +32,11 @@ public class CurrentUserTests {
   }
 
   @Test
-  public void testMoneySpent1() {
-    user.setMoneySpent(-1000);
-    currUser.setCurrentUser(user);
-    User temp = currUser.getCurrentUser();
-    assertEquals(-1000, temp.getMoneySpent(), 0);
-  }
-
-  @Test
   public void testMoneyOwed() {
     user.setMoneyOwed(0);
     currUser.setCurrentUser(user);
     User temp = currUser.getCurrentUser();
     assertEquals(0, temp.getMoneyOwed(), 0);
-  }
-
-  @Test
-  public void testMoneyOwed1() {
-    user.setMoneyOwed(500.00);
-    currUser.setCurrentUser(user);
-    User temp = currUser.getCurrentUser();
-    assertEquals(500.00, temp.getMoneyOwed(), 0);
   }
 
   public static void main(String [] args) {

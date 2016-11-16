@@ -87,6 +87,7 @@ public class Group extends RealmObject {
   /**
    * @return The name for the toString function
    */
+  @Override
   public String toString() {
         return name;
     }
