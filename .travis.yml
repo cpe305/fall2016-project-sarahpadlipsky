@@ -21,3 +21,4 @@ before_script:
 
 script:
    - ./gradlew clean assembleDebug jacocoTestDebugUnitTestReport sonarqube
+   - ls -d */
