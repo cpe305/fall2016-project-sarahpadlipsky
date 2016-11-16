@@ -16,6 +16,6 @@ sonarqube {
 
         property "sonar.jacoco.reportPath", "build/jacoco/testDebugUnitTest.exec" // path to coverage reports
         property "sonar.java.coveragePlugin", "jacoco"
-        property "sonar.junit.reportsPath", "build/test-results/Debug" // path to junit reports
+        property "sonar.junit.reportsPath", "build/test-results/Debug" // path to junit reports 
     }
 }
