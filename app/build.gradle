@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
+apply plugin: 'jacoco-android'
+apply from: './sonarqube.gradle'
 
 android {
     compileSdkVersion 22
@@ -15,6 +17,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            testCoverageEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
@@ -24,6 +27,16 @@ android {
     lintOptions {
         abortOnError false
     }
+}
+
+jacocoAndroidUnitTestReport {
+    csv.enabled false
+    html.enabled true
+    xml.enabled true
+}
+
+jacoco {
+    toolVersion = "0.7.7.201606060606"
 }
 
 dependencies {
