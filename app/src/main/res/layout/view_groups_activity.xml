@@ -8,13 +8,15 @@
 
     <LinearLayout
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:layout_gravity="center">
         <TextView
           android:id="@+id/username"
+          android:textColor="@color/background_material_light"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:gravity = "center"
           android:layout_marginLeft="8dp"
           android:layout_marginTop="8dp"
           android:textSize="20dp"/>
@@ -29,31 +31,41 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimaryDark"
+            android:layout_alignParentBottom="true">
         <Button
             android:id="@+id/add"
-            android:layout_width="wrap_content"
+            android:layout_width="185dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
             android:text="@string/add_group_button"
+            android:background="@color/background_material_light"
+            android:textColor="@color/colorPrimaryDark"
             android:onClick="createGroup"/>
 
         <Button
             android:id="@+id/backToLogin"
-            android:layout_width="wrap_content"
+            android:layout_width="185dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
             android:text="Back to Log-in"
+            android:background="@color/background_material_light"
+            android:textColor="@color/colorPrimaryDark"
             android:onClick="login"/>
 
 
     </RelativeLayout>
+
+
     </RelativeLayout>
 
 </LinearLayout>

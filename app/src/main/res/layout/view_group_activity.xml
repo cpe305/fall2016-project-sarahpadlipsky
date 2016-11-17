@@ -4,14 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:layout_gravity="center">
     <TextView
         android:id="@+id/groupName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity = "center_horizontal"
+        android:textColor="@color/background_material_light"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:textSize="20dp"/>
+        </LinearLayout>
 
     <TextView
         android:id="@+id/groupDescription"
@@ -33,24 +41,32 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimaryDark"
+            android:layout_alignParentBottom="true">
             <Button
                 android:id="@+id/payBack"
-                android:layout_width="wrap_content"
+                android:layout_width="185dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentStart="true"
+                android:background="@color/background_material_light"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
                 android:text="@string/pay_back_button"/>
 
             <Button
                 android:id="@+id/IOU"
-                android:layout_width="wrap_content"
+                android:layout_width="185dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:background="@color/background_material_light"
+                android:textColor="@color/colorPrimaryDark"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="16dp"
+
                 android:text="@string/calculate_IOU_button"/>
         </RelativeLayout>
 
