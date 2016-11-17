@@ -5,7 +5,7 @@
     <string name="add_group_button">Add group</string>
     <string name="calculate_IOU_button">Calculate IOU</string>
     <string name="pay_back_button">Pay Back</string>
-    <string name="submit_group">Adding Group&#8230;</string>
+    <string name="submit_group">New Group</string>
     <string name="input_group_name">Group Name:</string>
     <string name="input_group_description">Group Description:</string>
     <string name="input_users">Users:</string>

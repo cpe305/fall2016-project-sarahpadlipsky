@@ -3,12 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -16,48 +17,56 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/background_material_light"
             android:text="@string/submit_group"
-            android:background="@color/colorPrimaryDark"/>
-    </LinearLayout>
+            android:background="@color/colorPrimaryDark"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/input_group_name"/>
+        android:text="@string/input_group_name"
+        android:layout_marginLeft="8dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/nameOfGroup"/>
+        android:id="@+id/nameOfGroup"
+        android:layout_marginLeft="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/input_group_description"/>
+        android:text="@string/input_group_description"
+        android:layout_marginLeft="8dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/descriptionOfGroup"/>
+        android:id="@+id/descriptionOfGroup"
+        android:layout_marginLeft="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/input_users"/>
+        android:text="@string/input_users"
+        android:layout_marginLeft="8dp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/addUser"/>
+        android:id="@+id/addUser"
+        android:layout_marginLeft="8dp"/>
 
     <Button
         android:id="@+id/submitUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit User"
-        android:onClick="submitUser"/>
+        android:onClick="submitUser"
+        android:layout_marginLeft="8dp"/>
 
 
     <RelativeLayout
