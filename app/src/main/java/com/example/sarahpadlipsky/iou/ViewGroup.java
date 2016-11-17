@@ -50,9 +50,6 @@ public class ViewGroup extends Activity {
         listview = (ListView) findViewById(android.R.id.list);
         listview.setAdapter(new ViewGroupAdapter(this, group.getUsers()));
 
-        ArrayAdapter<User> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, group.getUsers());
-
     }
 
     /**
