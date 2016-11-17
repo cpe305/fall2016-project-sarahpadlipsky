@@ -12,6 +12,11 @@ android:
     - sys-img-armeabi-v7a-android-22
     - extra-android-m2repository
 
+licenses:
+    - android-sdk-license-c81a61d9
+    - android-sdk-license.*
+    - android.*
+
 before_script:
   # Create and start emulator
     - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
