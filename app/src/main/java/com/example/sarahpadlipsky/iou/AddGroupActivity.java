@@ -11,7 +11,6 @@ import android.widget.EditText;
 
 import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmResults;
 
 /**
  * Represents the activity that takes care of creating a group.
@@ -25,7 +24,9 @@ public class AddGroupActivity extends ListActivity {
   // List of users for new activity.
   private RealmList<User> userList;
 
-  private AlertDialog alertDialog;
+  private AlertDialog alertDialogDB;
+  private AlertDialog alertDialogList;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -41,11 +42,23 @@ public class AddGroupActivity extends ListActivity {
 
     setListAdapter(adapter);
 
-    alertDialog = new AlertDialog.Builder(AddGroupActivity.this).create();
-    alertDialog.setTitle("User does not exist!");
-    alertDialog.setMessage("Please check your spelling and try again. Remember the user must have logged in before to be added to a group.");
-    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+    alertDialogDB = new AlertDialog.Builder(AddGroupActivity.this).create();
+    alertDialogDB.setTitle("User does not exist!");
+    alertDialogDB.setMessage("Please check your spelling and try again. Remember the user must have logged in before to be added to a group.");
+    alertDialogDB.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
         new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+          }
+        });
+
+    alertDialogList = new AlertDialog.Builder(AddGroupActivity.this).create();
+    alertDialogList.setTitle("User already exists!");
+    alertDialogList.setMessage("You have already added this user to the group.");
+    alertDialogList.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+        new DialogInterface.OnClickListener() {
+          @Override
           public void onClick(DialogInterface dialog, int which) {
             dialog.dismiss();
           }
@@ -81,6 +94,7 @@ public class AddGroupActivity extends ListActivity {
 
     /**
      * On-Click method for "Add Group" button"
+     * @param view Necessary paramter for onClick function.
      */
     public void submitGroup(View view) {
       // Gets the name of the group.
@@ -118,6 +132,8 @@ public class AddGroupActivity extends ListActivity {
 
     /**
      * On-Click method for "Add User" button"
+     * @param view Necessary paramter for onClick function.
+
      */
     public void submitUser(View view) {
       // Gets new user name.
@@ -133,10 +149,22 @@ public class AddGroupActivity extends ListActivity {
           User user = realm.where(User.class).equalTo("email", userName).findFirst();
 
           if (user == null) {
-            alertDialog.show();
+            alertDialogDB.show();
           } else {
-            System.out.println("IT WAS NOT NULL");
-            userList.add(user);
+
+            boolean alreadyExists = false;
+
+            for (User currentUser : userList) {
+              if (user.equals(currentUser)) {
+                alreadyExists = true;
+              }
+            }
+
+            if (!alreadyExists)
+              userList.add(user);
+            else
+              alertDialogList.show();
+
           }
 
         }

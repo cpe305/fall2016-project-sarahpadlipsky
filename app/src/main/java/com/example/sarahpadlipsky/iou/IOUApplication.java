@@ -1,7 +1,6 @@
 package com.example.sarahpadlipsky.iou;
 
 import android.app.Application;
-import android.provider.Settings;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;

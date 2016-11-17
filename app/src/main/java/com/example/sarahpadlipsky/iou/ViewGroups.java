@@ -87,6 +87,7 @@ public class ViewGroups extends ListActivity {
 
   /**
    * On-Click method for "Add Group" button"
+   * @param view Necessary paramter for onClick function.
    */
   public void createGroup(View view) {
     Intent newActivity = new Intent(this, AddGroupActivity.class);
@@ -95,6 +96,7 @@ public class ViewGroups extends ListActivity {
 
   /**
    * On-Click method for "Add Group" button"
+   * @param view Necessary paramter for onClick function.
    */
   public void login(View view) {
     Intent newActivity = new Intent(this, Login.class);
