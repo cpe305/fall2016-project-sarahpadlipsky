@@ -33,9 +33,7 @@ public class ViewGroups extends ListActivity {
     realm = Realm.getDefaultInstance();
 
     // Gets current user.
-    // TODO: Find better way to find current user.
-    RealmResults<User> list = realm.where(User.class).equalTo("isCurrentUser", true).findAll();
-    User user = list.get(0);
+    User user = CurrentUser.getCurrentUser();
     ArrayAdapter<Group> adapter = new ArrayAdapter<>(this,
         android.R.layout.simple_list_item_1, user.getGroups());
 
@@ -43,8 +41,6 @@ public class ViewGroups extends ListActivity {
     ListView listView = getListView();
     listView.setOnItemClickListener(
         new AdapterView.OnItemClickListener() {
-
-          //TODO: Make sure it loads the correct group.
           @Override
           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Group currentGroup = (Group) parent.getItemAtPosition(position);
@@ -76,9 +72,8 @@ public class ViewGroups extends ListActivity {
     realm = Realm.getDefaultInstance();
     //Sets title of main page
     TextView text = (TextView) findViewById(R.id.username);
-    RealmResults<User> list = realm.where(User.class).equalTo("isCurrentUser", true).findAll();
-    String username = list.get(0).getName();
-    text.setText(username + getString(R.string.main_title));
+    User user = CurrentUser.getCurrentUser();
+    text.setText(user.getName() + getString(R.string.main_title));
   }
 
   /**
@@ -93,8 +88,16 @@ public class ViewGroups extends ListActivity {
   /**
    * On-Click method for "Add Group" button"
    */
-  public void createGroup() {
+  public void createGroup(View view) {
     Intent newActivity = new Intent(this, AddGroupActivity.class);
+    startActivity(newActivity);
+  }
+
+  /**
+   * On-Click method for "Add Group" button"
+   */
+  public void login(View view) {
+    Intent newActivity = new Intent(this, Login.class);
     startActivity(newActivity);
   }
 

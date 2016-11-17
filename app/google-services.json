@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "268915512812",
+    "project_id": "firebase-iouapplication"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268915512812:android:27d689d63f1b7a06",
+        "android_client_info": {
+          "package_name": "com.example.sarahpadlipsky.iou"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268915512812-eor08il183jaobr26ibc85i58j7e0rum.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sarahpadlipsky.iou",
+            "certificate_hash": "92C0E4049ADD7C54E35FB8F8758513F61A802145"
+          }
+        },
+        {
+          "client_id": "268915512812-kn31tu730a7k196pantkoefjm4kde3nh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoQ2uUmYr-qeTeAkpz1u7Is8MALr6l4kc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

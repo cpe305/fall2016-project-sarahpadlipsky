@@ -6,11 +6,13 @@ package com.example.sarahpadlipsky.iou;
  * @version October 30, 2016
  */
 public class CurrentUser {
-  private User appCurrentUser;
+  private static User appCurrentUser;
 
-  public User getCurrentUser() {
+  public static User getCurrentUser() {
     return appCurrentUser;
   }
 
-  public void setCurrentUser(User user) { appCurrentUser = user; }
+  public static void setCurrentUser(User user) { appCurrentUser = user; }
+
 }
+

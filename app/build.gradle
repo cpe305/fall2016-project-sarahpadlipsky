@@ -3,6 +3,7 @@ apply plugin: 'realm-android'
 apply plugin: 'jacoco-android'
 apply from: './sonarqube.gradle'
 
+
 android {
     compileSdkVersion 22
     buildToolsVersion "21.1.2"
@@ -42,5 +43,9 @@ jacoco {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.1.0'
+    compile 'com.google.android.gms:play-services-auth:9.2.0'
+
 }
+apply plugin: 'com.google.gms.google-services'
+

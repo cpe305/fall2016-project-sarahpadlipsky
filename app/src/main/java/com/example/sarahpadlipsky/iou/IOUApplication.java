@@ -1,6 +1,7 @@
 package com.example.sarahpadlipsky.iou;
 
 import android.app.Application;
+import android.provider.Settings;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -28,19 +29,6 @@ public class IOUApplication extends Application {
         .build();
     Realm.setDefaultConfiguration(realmConfiguration);
     realm = Realm.getDefaultInstance();
-
-    // Sets current user is the database.
-    realm.executeTransaction(new Realm.Transaction() {
-        @Override
-        public void execute(Realm realm) {
-          long num = realm.where(User.class).count();
-          // TODO: Should this check if it should update instead?
-          User user = realm.createObject(User.class,Long.toString(num));
-          //TODO: Get username from log-in.
-          user.setName("Sarah");
-          user.setIsCurrentUser(true);
-        }
-    });
   }
 
   /**

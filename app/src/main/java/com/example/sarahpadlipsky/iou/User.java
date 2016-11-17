@@ -18,6 +18,8 @@ public class User extends RealmObject {
   // The name of the user
   @Required
   private String name;
+  @Required
+  private String email;
   // Is the main user
   private boolean isCurrentUser;
   // The amount of money the user has paid
@@ -47,6 +49,21 @@ public class User extends RealmObject {
   public void setName(String name) {
     this.name = name;
   }
+
+  /**
+   * @return The email of the user
+   */
+  public String getEmail() {
+    return email;
+  }
+
+  /**
+   * @param email The new name of the user
+   */
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
 
   /**
    * @return The amount of money the user has paid

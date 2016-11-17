@@ -1,8 +1,11 @@
 package com.example.sarahpadlipsky.iou;
 
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 
@@ -21,6 +24,8 @@ public class AddGroupActivity extends ListActivity {
   private Realm realm;
   // List of users for new activity.
   private RealmList<User> userList;
+
+  private AlertDialog alertDialog;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -29,11 +34,22 @@ public class AddGroupActivity extends ListActivity {
     realm = Realm.getDefaultInstance();
 
     userList = new RealmList<>();
+    userList.add(CurrentUser.getCurrentUser());
 
     ArrayAdapter<User>  adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, userList);
 
     setListAdapter(adapter);
+
+    alertDialog = new AlertDialog.Builder(AddGroupActivity.this).create();
+    alertDialog.setTitle("User does not exist!");
+    alertDialog.setMessage("Please check your spelling and try again. Remember the user must have logged in before to be added to a group.");
+    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+        new DialogInterface.OnClickListener() {
+          public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+          }
+        });
   }
 
     /**
@@ -66,7 +82,7 @@ public class AddGroupActivity extends ListActivity {
     /**
      * On-Click method for "Add Group" button"
      */
-    public void submitGroup() {
+    public void submitGroup(View view) {
       // Gets the name of the group.
       EditText nameEditField = (EditText) findViewById(R.id.nameOfGroup);
       final String groupName = nameEditField.getText().toString();
@@ -78,43 +94,52 @@ public class AddGroupActivity extends ListActivity {
       realm.executeTransaction(new Realm.Transaction() {
         @Override
         public void execute(Realm realm) {
-          RealmResults<User> list = realm.where(User.class).equalTo("isCurrentUser", true).findAll();
-          User user = list.get(0);
 
-          Group group = realm.createObject(Group.class);
-          group.setName(groupName);
-          group.setDescription(groupDescription);
-          for (User currentUser: userList) {
-            group.addUser(currentUser);
+          for (User userInList : userList) {
+            User user = realm.where(User.class).equalTo("email",
+                userInList.getEmail()).findFirst();
+
+            Group group = realm.createObject(Group.class);
+            group.setName(groupName);
+            group.setDescription(groupDescription);
+            for (User currentUser : userList) {
+              group.addUser(currentUser);
+            }
+            user.addGroup(group);
           }
-          user.addGroup(group);
 
         }
       });
 
       // Sends back to group list.
-      Intent newActivity = new Intent(this, AddGroupActivity.class);
+      Intent newActivity = new Intent(this, ViewGroups.class);
       startActivity(newActivity);
     }
 
     /**
      * On-Click method for "Add User" button"
      */
-    public void submitUser() {
+    public void submitUser(View view) {
       // Gets new user name.
       EditText userEditField = (EditText) findViewById(R.id.addUser);
       final String userName = userEditField.getText().toString();
 
+
       // Submits user to database.
       realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-              long num = realm.where(User.class).count();
-              // TODO: Should this check if it should update instead?
-              User newUser = realm.createObject(User.class,Long.toString(num));
-              newUser.setName(userName);
-              userList.add(newUser);
-            }
+        @Override
+        public void execute(Realm realm) {
+
+          User user = realm.where(User.class).equalTo("email", userName).findFirst();
+
+          if (user == null) {
+            alertDialog.show();
+          } else {
+            System.out.println("IT WAS NOT NULL");
+            userList.add(user);
+          }
+
+        }
       });
 
       // Updates list adapter.
