@@ -146,28 +146,22 @@ public class AddGroupActivity extends ListActivity {
       realm.executeTransaction(new Realm.Transaction() {
         @Override
         public void execute(Realm realm) {
-
           User user = realm.where(User.class).equalTo("email", userName).findFirst();
-
           if (user == null) {
             alertDialogDB.show();
           } else {
 
             boolean alreadyExists = false;
-
             for (User currentUser : userList) {
               if (user.equals(currentUser)) {
                 alreadyExists = true;
               }
             }
-
             if (!alreadyExists)
               userList.add(user);
             else
               alertDialogList.show();
-
           }
-
         }
       });
 

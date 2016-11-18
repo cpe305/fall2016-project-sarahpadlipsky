@@ -8,6 +8,8 @@ package com.example.sarahpadlipsky.iou;
 public class CurrentUser {
   private static User appCurrentUser;
 
+  private CurrentUser() {}
+
   public static User getCurrentUser() {
     return appCurrentUser;
   }

@@ -1,11 +1,9 @@
 package com.example.sarahpadlipsky.iou;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -80,16 +78,28 @@ public class ViewGroup extends Activity {
         realm.close();
     }
 
+    /**
+     * On-Click method for "Pay Back" button"
+     * @param view Necessary paramter for onClick function.
+     */
     public void payBack(View view) {
         Intent newActivity = new Intent(this, PayBill.class);
         startActivity(newActivity);
     }
 
+    /**
+     * On-Click method for "Calculate IOU" button"
+     * @param view Necessary paramter for onClick function.
+     */
     public void calculateIOU(View view) {
         Intent newActivity = new Intent(this, CalculateIOU.class);
         startActivity(newActivity);
     }
 
+    /**
+     * On-Click method for "Add Bill" button"
+     * @param view Necessary paramter for onClick function.
+     */
     public void addBill(View view) {
         Intent newActivity = new Intent(this, NewBill.class);
         startActivity(newActivity);

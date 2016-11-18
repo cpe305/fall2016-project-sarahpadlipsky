@@ -114,8 +114,6 @@ public class Login extends AppCompatActivity implements
 
     User user = realm.where(User.class).equalTo("id", acct.getId()).findFirst();
 
-    System.out.println("THE USER IS " + acct.getDisplayName());
-
     if (user == null) {
 
       realm.executeTransaction(new Realm.Transaction() {
@@ -247,6 +245,8 @@ public class Login extends AppCompatActivity implements
   @Override
   public void onClick(View v) {
     switch (v.getId()) {
+      default:
+        break;
       case R.id.sign_in_button:
         signIn();
         break;
