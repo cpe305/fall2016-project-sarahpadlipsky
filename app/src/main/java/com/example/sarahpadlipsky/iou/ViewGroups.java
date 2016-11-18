@@ -31,7 +31,7 @@ public class ViewGroups extends ListActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.view_groups_activity);
     realm = Realm.getDefaultInstance();
-    
+
     // Gets current user.
     User user = CurrentUser.getCurrentUser();
     ArrayAdapter<Group> adapter = new ArrayAdapter<>(this,
