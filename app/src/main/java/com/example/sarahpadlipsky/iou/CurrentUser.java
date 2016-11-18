@@ -15,4 +15,3 @@ public class CurrentUser {
   public static void setCurrentUser(User user) { appCurrentUser = user; }
 
 }
-

@@ -31,7 +31,7 @@ public class ViewGroups extends ListActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.view_groups_activity);
     realm = Realm.getDefaultInstance();
-
+    
     // Gets current user.
     User user = CurrentUser.getCurrentUser();
     ArrayAdapter<Group> adapter = new ArrayAdapter<>(this,
@@ -75,6 +75,7 @@ public class ViewGroups extends ListActivity {
     //Sets title of main page
     TextView text = (TextView) findViewById(R.id.username);
     User user = CurrentUser.getCurrentUser();
+    System.out.println("the user is " + user.getName());
     text.setText(user.getName() + getString(R.string.main_title));
   }
 

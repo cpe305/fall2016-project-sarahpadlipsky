@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -77,6 +78,16 @@ public class ViewGroup extends Activity {
     protected void onStop() {
         super.onStop();
         realm.close();
+    }
+
+    public void payBack(View view) {
+        Intent newActivity = new Intent(this, PayBill.class);
+        startActivity(newActivity);
+    }
+
+    public void calculateIOU(View view) {
+        Intent newActivity = new Intent(this, CalculateIOU.class);
+        startActivity(newActivity);
     }
 
 }

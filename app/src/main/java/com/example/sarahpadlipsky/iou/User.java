@@ -20,8 +20,6 @@ public class User extends RealmObject {
   private String name;
   @Required
   private String email;
-  // Is the main user
-  private boolean isCurrentUser;
   // The amount of money the user has paid
   private double moneySpent;
   // The amount of money the user still owes
@@ -105,20 +103,6 @@ public class User extends RealmObject {
    */
   public void addGroup(Group group) {
     groups.add(group);
-  }
-
-  /**
-   * @param isCurrentUser Determines if this user is the current user
-   */
-  public void setIsCurrentUser(boolean isCurrentUser) {
-    this.isCurrentUser = isCurrentUser;
-  }
-
-  /**
-   * @return If the user is the current user
-   */
-  public boolean getIsCurrentUser() {
-    return isCurrentUser;
   }
 
   /**

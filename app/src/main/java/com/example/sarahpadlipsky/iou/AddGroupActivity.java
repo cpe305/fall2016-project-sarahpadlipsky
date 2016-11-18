@@ -109,16 +109,17 @@ public class AddGroupActivity extends ListActivity {
         @Override
         public void execute(Realm realm) {
 
+          Group group = realm.createObject(Group.class);
+          group.setName(groupName);
+          group.setDescription(groupDescription);
+          for (User currentUser : userList) {
+            group.addUser(currentUser);
+          }
+
           for (User userInList : userList) {
             User user = realm.where(User.class).equalTo("email",
                 userInList.getEmail()).findFirst();
 
-            Group group = realm.createObject(Group.class);
-            group.setName(groupName);
-            group.setDescription(groupDescription);
-            for (User currentUser : userList) {
-              group.addUser(currentUser);
-            }
             user.addGroup(group);
           }
 

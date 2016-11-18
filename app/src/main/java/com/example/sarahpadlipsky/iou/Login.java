@@ -114,6 +114,8 @@ public class Login extends AppCompatActivity implements
 
     User user = realm.where(User.class).equalTo("id", acct.getId()).findFirst();
 
+    System.out.println("THE USER IS " + acct.getDisplayName());
+
     if (user == null) {
 
       realm.executeTransaction(new Realm.Transaction() {
@@ -122,8 +124,6 @@ public class Login extends AppCompatActivity implements
           User realmUser = realm.createObject(User.class,acct.getId());
           realmUser.setName(acct.getDisplayName());
           realmUser.setEmail(acct.getEmail());
-          realmUser.setIsCurrentUser(true);
-
           CurrentUser.setCurrentUser(realmUser);
         }
       });

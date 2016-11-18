@@ -73,18 +73,6 @@ public class UserTests {
     }
 
 	@Test
-    public void testCurrentUser() {
-    	user.setIsCurrentUser(true);
-        assertEquals(true, user.getIsCurrentUser());
-    }
-
-    @Test
-    public void testCurrentUser1() {
-    	user.setIsCurrentUser(false);
-        assertEquals(false, user.getIsCurrentUser());
-    }
-
-	@Test
     public void testUserGroup() {
     	Group testGroup1 = new Group();
         Group testGroup2 = new Group();
