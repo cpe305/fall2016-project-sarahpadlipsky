@@ -90,4 +90,9 @@ public class ViewGroup extends Activity {
         startActivity(newActivity);
     }
 
+    public void addBill(View view) {
+        Intent newActivity = new Intent(this, NewBill.class);
+        startActivity(newActivity);
+    }
+
 }

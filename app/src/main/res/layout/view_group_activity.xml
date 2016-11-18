@@ -50,7 +50,7 @@
             android:layout_alignParentBottom="true">
             <Button
                 android:id="@+id/payBack"
-                android:layout_width="185dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="@color/background_material_light"
                 android:textColor="@color/colorPrimaryDark"
@@ -61,8 +61,18 @@
                 android:onClick="payBack"/>
 
             <Button
+                android:id="@+id/addBill"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:background="@color/background_material_light"
+                android:textColor="@color/colorPrimaryDark"
+                android:text="Add Bill"
+                android:layout_centerInParent="true"
+                android:onClick="addBill"/>
+
+            <Button
                 android:id="@+id/IOU"
-                android:layout_width="185dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:background="@color/background_material_light"
                 android:textColor="@color/colorPrimaryDark"
