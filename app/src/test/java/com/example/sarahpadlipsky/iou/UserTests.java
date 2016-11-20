@@ -25,51 +25,33 @@ public class UserTests {
     }
 
 	@Test
-    public void testUserName1() {
+    public void testUserNameEmptyString() {
     	user.setName("");
         assertEquals("", user.getName());
     }
 
 	@Test
-    public void testUserName2() {
-    	user.setName("Joe5");
-        assertEquals("Joe5", user.getName());
-    }
-
-	@Test
-    public void testMoneySpent() {
+    public void testMoneySpentRoundNumber() {
     	user.setMoneySpent(500);
         assertEquals(500, user.getMoneySpent(), 0);
     }
 
 	@Test
-    public void testMoneySpent1() {
+    public void testMoneySpentDecimal() {
     	user.setMoneySpent(30.555);
         assertEquals(30.555, user.getMoneySpent(), 0);
     }
 
 	@Test
-    public void testMoneySpent2() {
-    	user.setMoneySpent(-200);
-        assertEquals(-200, user.getMoneySpent(), 0);
-    }
-
-	@Test
-    public void testMoneyOwed() {
+    public void testMoneyOwedRoundNumber() {
     	user.setMoneyOwed(300);
         assertEquals(300, user.getMoneyOwed(), 0);
     }
 
 	@Test
-    public void testMoneyOwed1() {
+    public void testMoneyOwedDecimal() {
     	user.setMoneyOwed(20.333);
         assertEquals(20.333, user.getMoneyOwed(), 0);
-    }
-
-	@Test
-    public void testMoneyOwed2() {
-    	user.setMoneyOwed(-100);
-        assertEquals(-100, user.getMoneyOwed(), 0);
     }
 
 	@Test
@@ -94,6 +76,29 @@ public class UserTests {
 
     assertEquals(user.toString(), name);
   }
+
+  @Test
+  public void testEmail() {
+    String email = "testing@gmail.com";
+    user.setEmail(email);
+    assertEquals(email, user.getEmail());
+  }
+
+  @Test
+  public void testUserBills() {
+    Bill bill1 = new Bill();
+    Bill bill2 = new Bill();
+
+    RealmList<Bill> testList = new RealmList<>();
+    testList.add(bill1);
+    testList.add(bill2);
+
+    user.addBill(bill1);
+    user.addBill(bill2);
+
+    assertEquals(testList, user.getBills());
+  }
+
 
     public static void main(String [] args) {
         org.junit.runner.JUnitCore.main("UserTests");

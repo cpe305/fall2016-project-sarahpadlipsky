@@ -20,6 +20,7 @@ public class User extends RealmObject {
   private String name;
   @Required
   private String email;
+  private  RealmList<Bill> bills;
   // The amount of money the user has paid
   private double moneySpent;
   // The amount of money the user still owes
@@ -32,6 +33,7 @@ public class User extends RealmObject {
    */
   public User() {
     groups = new RealmList<>();
+    bills = new RealmList<>();
   }
 
   /**
@@ -62,6 +64,23 @@ public class User extends RealmObject {
     this.email = email;
   }
 
+  /**
+   * @return The user's bills
+   */
+  public RealmList<Bill> getBills() {
+    return bills;
+  }
+
+  /**
+   * @param bill The bill to add to the user's bills
+   */
+  public void addBill(Bill bill) {
+    bills.add(bill);
+  }
+
+  /**
+   * @return The name for the toString function
+   */
 
   /**
    * @return The amount of money the user has paid
