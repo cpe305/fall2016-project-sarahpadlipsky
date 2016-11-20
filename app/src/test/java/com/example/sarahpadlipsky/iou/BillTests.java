@@ -21,10 +21,10 @@ public class BillTests {
   }
 
   @Test
-  public void testBillName() {
+  public void testBillNameAndToString() {
     String name = "Name Bill";
     bill.setName(name);
-    assertEquals(name, bill.getName());
+    assertEquals(bill.toString(), bill.getName());
   }
 
   @Test
@@ -39,6 +39,20 @@ public class BillTests {
     String description = "This is the description";
     bill.setDescription(description);
     assertEquals(description, bill.getDescription());
+  }
+
+  @Test
+  public void testBillID() {
+    String id = "5";
+    bill.setId(id);
+    assertEquals(id, bill.getId());
+  }
+
+  @Test
+  public void testBillUser() {
+    User user = new User();
+    bill.setUser(user);
+    assertEquals(user, bill.getUser());
   }
 
   public static void main(String [] args) {

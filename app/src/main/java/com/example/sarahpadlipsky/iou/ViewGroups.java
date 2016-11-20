@@ -15,7 +15,7 @@ import io.realm.RealmResults;
 /**
  * Represents the main activity that shows the list of groups that the user is apart of.
  * @author sarahpadlipsky
- * @version October 28, 2016
+ * @version November 19, 2016
  */
 public class ViewGroups extends ListActivity {
 

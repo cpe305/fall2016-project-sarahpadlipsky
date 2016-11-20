@@ -11,32 +11,50 @@ import io.realm.RealmList;
 
 class ViewGroupAdapter extends BaseAdapter {
 
-  Context context;
-  RealmList<User> data;
+  // Current context.
+  private Context context;
+  // Current list of users.
+  private RealmList<User> users;
+  // Current layout inflater.
   private static LayoutInflater inflater = null;
 
   public ViewGroupAdapter(Context context, RealmList<User> data) {
     this.context = context;
-    this.data = data;
+    this.users = data;
     inflater = (LayoutInflater) context
         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
   }
 
+  /**
+   * @return The number of users
+   */
   @Override
   public int getCount() {
-    return data.size();
+    return users.size();
   }
 
+  /**
+   * @return A user at given position
+   */
   @Override
   public User getItem(int position) {
-    return data.get(position);
+    return users.get(position);
   }
 
+  /**
+   * @return Given position of item
+   */
   @Override
   public long getItemId(int position) {
     return position;
   }
 
+  /**
+   * Makes current view for the items in the list view
+   * @param position Position of given item
+   * @param convertView Current view
+   * @param parent Refers to the parent
+   */
   @Override
   public View getView(int position, View convertView, ViewGroup parent) {
     View vi = convertView;
@@ -45,8 +63,8 @@ class ViewGroupAdapter extends BaseAdapter {
     TextView userName = (TextView) vi.findViewById(R.id.userName);
     TextView moneyOwed = (TextView) vi.findViewById(R.id.moneyOwed);
 
-    userName.setText(data.get(position).getName());
-    moneyOwed.setText(Double.toString(data.get(position).getMoneySpent()));
+    userName.setText(users.get(position).getName());
+    moneyOwed.setText(Double.toString(users.get(position).getMoneySpent()));
 
     return vi;
   }

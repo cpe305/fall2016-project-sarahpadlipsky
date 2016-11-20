@@ -1,7 +1,6 @@
 package com.example.sarahpadlipsky.iou;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import io.realm.Realm;
-import io.realm.RealmList;
 
 /**
  * Represents a new bill that a user has made.
@@ -25,6 +23,10 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
   private Group group;
   private User user;
 
+  /**
+   * Android lifecycle function. Called when activity is opened for the first time.
+   * @param savedInstanceState Lifecycle parameter
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -38,12 +40,9 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
 
     group = realm.where(Group.class).contains("groupID", id).findFirst();
 
-    System.out.println("THE NAME OF THE GROUP IS " + group.getName());
-
-
     spinner = (Spinner)findViewById(R.id.spinner);
 
-    ArrayAdapter<User> adapter = new ArrayAdapter<User>(this,
+    ArrayAdapter<User> adapter = new ArrayAdapter<>(this,
         android.R.layout.simple_list_item_1, group.getUsers());
 
     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -51,12 +50,23 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
     spinner.setOnItemSelectedListener(this);
   }
 
+  /**
+   * On-Click method for items in drop down
+   * @param parent Necessary parameter for function
+   * @param v Current view
+   * @param position Position of the item clicked
+   * @param id id of the item clicked
+   */
   @Override
   public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
 
     user = group.getUsers().get(position);
   }
 
+  /**
+   * If nothing is clicked, picks the first item
+   * @param adapterView Necessary parameter for function
+   */
   @Override
   public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -64,7 +74,11 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
 
   }
 
-  public void addBill(View v) {
+  /**
+   * On-Click method for "Add Bill" button"
+   * @param view Necessary paramter for onClick function.
+   */
+  public void addBill(View view) {
     // Gets the name of the bill.
     EditText billEditField = (EditText) findViewById(R.id.billName);
     final String billName = billEditField.getText().toString();
@@ -74,19 +88,7 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
     // Gets the description of the bill.
     EditText costEditField = (EditText) findViewById(R.id.costOfBill);
     final String costDescription = costEditField.getText().toString();
-    final double cost = Double.valueOf(costDescription);
-
-    System.out.println("THE NAME OF THE BILL IS " + billName);
-    System.out.println("THE DESCRIPTION OF THE BILL IS " + billDescription);
-    System.out.println("THE COST OF THE BILL IS " + cost);
-    System.out.println("THE USER OF THE BILL IS " + user.getName());
-
-
-
-
-
-
-
+    final double cost = Double.parseDouble(costDescription);
 
     // Submits information to database.
     realm.executeTransaction(new Realm.Transaction() {
@@ -109,8 +111,6 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
     Intent newActivity = new Intent(this, ViewGroup.class);
     newActivity.putExtra(getString(R.string.group_id), group.getId());
     startActivity(newActivity);
-
-
   }
 
   /**

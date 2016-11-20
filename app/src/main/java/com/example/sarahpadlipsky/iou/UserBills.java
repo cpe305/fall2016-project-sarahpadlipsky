@@ -38,7 +38,7 @@ public class UserBills extends ListActivity {
     TextView text = (TextView) findViewById(R.id.titleAccount);
     text.setText(user.getName() + "'s Bills");
 
-    ArrayAdapter<Bill> adapter = new ArrayAdapter<Bill>(this,
+    ArrayAdapter<Bill> adapter = new ArrayAdapter<>(this,
         android.R.layout.simple_list_item_1, user.getBills());
 
     setListAdapter(adapter);

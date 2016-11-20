@@ -1,13 +1,8 @@
 package com.example.sarahpadlipsky.iou;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import io.realm.Realm;
@@ -20,8 +15,13 @@ import io.realm.Realm;
 
 public class ViewBill extends Activity {
 
+  // Database connection
   private Realm realm;
 
+  /**
+   * Android lifecycle function. Called when activity is opened for the first time.
+   * @param savedInstanceState Lifecycle parameter
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
