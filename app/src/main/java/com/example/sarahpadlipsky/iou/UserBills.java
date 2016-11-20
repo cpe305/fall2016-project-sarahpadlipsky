@@ -36,7 +36,7 @@ public class UserBills extends ListActivity {
     User user = realm.where(User.class).contains("email", email).findFirst();
 
     TextView text = (TextView) findViewById(R.id.titleAccount);
-    text.setText(user.getName() + "'s Bills");
+    text.setText(user.getName() + "'s Transactions");
 
     ArrayAdapter<Bill> adapter = new ArrayAdapter<>(this,
         android.R.layout.simple_list_item_1, user.getBills());

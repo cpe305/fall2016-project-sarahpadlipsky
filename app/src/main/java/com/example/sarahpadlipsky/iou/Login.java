@@ -245,8 +245,6 @@ public class Login extends AppCompatActivity implements
   @Override
   public void onClick(View v) {
     switch (v.getId()) {
-      default:
-        break;
       case R.id.sign_in_button:
         signIn();
         break;
@@ -255,6 +253,8 @@ public class Login extends AppCompatActivity implements
         break;
       case R.id.continue_button:
         continueToApp();
+        break;
+      default:
         break;
     }
   }

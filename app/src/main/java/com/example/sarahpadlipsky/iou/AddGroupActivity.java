@@ -121,10 +121,8 @@ public class AddGroupActivity extends ListActivity {
           for (User userInList : userList) {
             User user = realm.where(User.class).equalTo("email",
                 userInList.getEmail()).findFirst();
-
             user.addGroup(group);
           }
-
         }
       });
 

@@ -126,5 +126,13 @@ public class ViewGroups extends ListActivity {
         result.deleteAllFromRealm();
       }
     });
+
+    realm.executeTransaction(new Realm.Transaction() {
+      @Override
+      public void execute(Realm realm) {
+        RealmResults<Bill> result = realm.where(Bill.class).findAll();
+        result.deleteAllFromRealm();
+      }
+    });
   }
 }

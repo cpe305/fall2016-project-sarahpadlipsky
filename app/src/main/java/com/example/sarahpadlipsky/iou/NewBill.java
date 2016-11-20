@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.math.BigDecimal;
+import java.text.NumberFormat;
+
 import io.realm.Realm;
 
 /**
@@ -76,7 +79,7 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
 
   /**
    * On-Click method for "Add Bill" button"
-   * @param view Necessary paramter for onClick function.
+   * @param view Necessary parameter for onClick function.
    */
   public void addBill(View view) {
     // Gets the name of the bill.
@@ -85,10 +88,12 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
     // Gets the description of the bill.
     EditText descriptionEditField = (EditText) findViewById(R.id.descriptionOfBill);
     final String billDescription = descriptionEditField.getText().toString();
-    // Gets the description of the bill.
+    // Gets the cost of the bill.
     EditText costEditField = (EditText) findViewById(R.id.costOfBill);
     final String costDescription = costEditField.getText().toString();
-    final double cost = Double.parseDouble(costDescription);
+    BigDecimal parsed = new BigDecimal(costDescription).setScale(2,BigDecimal.ROUND_FLOOR);
+    final double cost = parsed.doubleValue();
+
 
     // Submits information to database.
     realm.executeTransaction(new Realm.Transaction() {

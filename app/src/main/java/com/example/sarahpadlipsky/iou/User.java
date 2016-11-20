@@ -77,13 +77,13 @@ public class User extends RealmObject {
   public void addBill(Bill bill) {
     bills.add(bill);
 
-    double moneyOwed = 0;
+    double currentMoneyOwed = 0;
 
     for (Bill currentBill : bills) {
-      moneyOwed += currentBill.getAmount();
+      currentMoneyOwed += currentBill.getAmount();
     }
 
-    setMoneySpent(moneyOwed);
+    setMoneySpent(currentMoneyOwed);
   }
 
   /**

@@ -7,19 +7,18 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
+
 import io.realm.RealmList;
 
 class ViewGroupAdapter extends BaseAdapter {
 
-  // Current context.
-  private Context context;
   // Current list of users.
   private RealmList<User> users;
   // Current layout inflater.
   private static LayoutInflater inflater = null;
 
   public ViewGroupAdapter(Context context, RealmList<User> data) {
-    this.context = context;
     this.users = data;
     inflater = (LayoutInflater) context
         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -64,7 +63,11 @@ class ViewGroupAdapter extends BaseAdapter {
     TextView moneyOwed = (TextView) vi.findViewById(R.id.moneyOwed);
 
     userName.setText(users.get(position).getName());
-    moneyOwed.setText(Double.toString(users.get(position).getMoneySpent()));
+    String moneySpent = Double.toString(users.get(position).getMoneySpent());
+    BigDecimal parsed = new BigDecimal(moneySpent).setScale(2,BigDecimal.ROUND_FLOOR);
+    final double cost = parsed.doubleValue();
+
+    moneyOwed.setText("$" + String.valueOf(cost));
 
     return vi;
   }
