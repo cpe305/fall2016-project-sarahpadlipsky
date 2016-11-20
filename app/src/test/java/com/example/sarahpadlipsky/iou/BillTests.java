@@ -21,6 +21,13 @@ public class BillTests {
   }
 
   @Test
+  public void testBillName() {
+    String name = "Name Bill";
+    bill.setName(name);
+    assertEquals(name, bill.getName());
+  }
+
+  @Test
   public void testBillAmount() {
     double amount = 5.63;
     bill.setAmount(amount);

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class ViewGroup extends Activity {
     // Database connection
     private Realm realm;
     private ListView listview;
+    private Group group;
 
     /**
      * Android lifecycle function. Called when activity is opened for the first time.
@@ -33,12 +35,12 @@ public class ViewGroup extends Activity {
 
         // Gets group name from main activity.
         Intent intent = getIntent();
-        String name = intent.getStringExtra(getString(R.string.group_name));
+        String id = intent.getStringExtra(getString(R.string.group_id));
 
         realm = Realm.getDefaultInstance();
-        RealmResults<Group> list = realm.where(Group.class).equalTo(getString(R.string.group_name),
-                name).findAll();
-        Group group = list.get(0);
+        RealmResults<Group> list = realm.where(Group.class).equalTo(getString(R.string.group_id),
+                id).findAll();
+        group = list.get(0);
         // Sets group name in view.
         TextView text = (TextView) findViewById(R.id.groupName);
         text.setText(group.getName());
@@ -49,6 +51,19 @@ public class ViewGroup extends Activity {
         listview = (ListView) findViewById(android.R.id.list);
         listview.setAdapter(new ViewGroupAdapter(this, group.getUsers()));
 
+        listview.setOnItemClickListener(
+            new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    User currentUser = (User) parent.getItemAtPosition(position);
+                    Intent newActivity = new Intent(view.getContext(), UserBills.class);
+                    // Send group name to next intent for querying purposes.
+                    newActivity.putExtra("email", currentUser.getEmail());
+                    realm.close();
+                    startActivity(newActivity);
+                }
+            });
     }
 
     /**
@@ -102,6 +117,8 @@ public class ViewGroup extends Activity {
      */
     public void addBill(View view) {
         Intent newActivity = new Intent(this, NewBill.class);
+
+        newActivity.putExtra("groupID", group.getId());
         startActivity(newActivity);
     }
 

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">IOU</string>
     <string name="group_name">name</string>
+    <string name="group_id">groupID</string>
     <string name="main_title">\'s Groups</string>
     <string name="add_group_button">Add group</string>
     <string name="calculate_IOU_button">Calculate IOU</string>

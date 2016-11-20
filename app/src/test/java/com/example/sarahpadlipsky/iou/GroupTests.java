@@ -67,6 +67,13 @@ public class GroupTests {
       assertEquals(group.getDescription(), description);
     }
 
+  @Test
+  public void testId() {
+    String id = "4";
+    group.setId(id);
+    assertEquals(group.getId(), id);
+  }
+
 
     public static void main(String [] args) {
     	org.junit.runner.JUnitCore.main("GroupTests");

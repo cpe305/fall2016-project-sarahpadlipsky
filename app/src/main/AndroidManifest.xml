@@ -34,6 +34,12 @@
         <activity
             android:name=".CalculateIOU" >
         </activity>
+        <activity
+            android:name=".UserBills" >
+        </activity>
+        <activity
+            android:name=".ViewBill" >
+        </activity>
     </application>
 
 </manifest>

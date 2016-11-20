@@ -2,6 +2,7 @@ package com.example.sarahpadlipsky.iou;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 import io.realm.annotations.Required;
 
 /**
@@ -20,6 +21,9 @@ public class Group extends RealmObject {
   private double totalMoneySpent;
   // The users in the group
   private RealmList<User> users;
+  // The id number for the group.
+  private String groupID;
+
 
   /**
    * Constructor for a group. Initializes the users list.
@@ -28,6 +32,19 @@ public class Group extends RealmObject {
         users = new RealmList<>();
     }
 
+  /**
+   * @return The id of the group
+   */
+  public String getId() {
+    return groupID;
+  }
+
+  /**
+   * @param groupID The unique id of the group
+   */
+  public void setId(String groupID) {
+    this.groupID = groupID;
+  }
   /**
    * @return The name of the group
    */

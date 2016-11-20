@@ -34,6 +34,7 @@ public class ViewGroups extends ListActivity {
 
     // Gets current user.
     User user = CurrentUser.getCurrentUser();
+
     ArrayAdapter<Group> adapter = new ArrayAdapter<>(this,
         android.R.layout.simple_list_item_1, user.getGroups());
 
@@ -46,7 +47,7 @@ public class ViewGroups extends ListActivity {
             Group currentGroup = (Group) parent.getItemAtPosition(position);
             Intent newActivity = new Intent(view.getContext(), ViewGroup.class);
             // Send group name to next intent for querying purposes.
-            newActivity.putExtra(getString(R.string.group_name), currentGroup.getName());
+            newActivity.putExtra(getString(R.string.group_id), currentGroup.getId());
             realm.close();
             startActivity(newActivity);
           }

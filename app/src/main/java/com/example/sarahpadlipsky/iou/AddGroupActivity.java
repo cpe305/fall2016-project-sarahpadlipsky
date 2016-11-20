@@ -1,5 +1,6 @@
 package com.example.sarahpadlipsky.iou;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.content.DialogInterface;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+
+import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
@@ -109,9 +112,11 @@ public class AddGroupActivity extends ListActivity {
         @Override
         public void execute(Realm realm) {
 
+          String num = Long.toString(realm.where(Group.class).count());
           Group group = realm.createObject(Group.class);
           group.setName(groupName);
           group.setDescription(groupDescription);
+          group.setId(num);
           for (User currentUser : userList) {
             group.addUser(currentUser);
           }
