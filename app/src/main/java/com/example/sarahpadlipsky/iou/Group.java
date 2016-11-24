@@ -30,6 +30,7 @@ public class Group extends RealmObject {
    */
   public Group() {
         users = new RealmList<>();
+        bills = new RealmList<>();
     }
 
   /**

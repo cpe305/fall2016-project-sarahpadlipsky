@@ -84,20 +84,6 @@ public class UserTests {
     assertEquals(email, user.getEmail());
   }
 
-  @Test
-  public void testUserBills() {
-    Bill bill1 = new Bill();
-    Bill bill2 = new Bill();
-
-    RealmList<Bill> testList = new RealmList<>();
-    testList.add(bill1);
-    testList.add(bill2);
-
-    user.addBill(bill1);
-    user.addBill(bill2);
-
-    assertEquals(testList, user.getBills());
-  }
 
 
     public static void main(String [] args) {
