@@ -107,6 +107,7 @@ public class ViewGroup extends Activity {
      */
     public void calculateIOU() {
         Intent newActivity = new Intent(this, CalculateIOU.class);
+        newActivity.putExtra(getString(R.string.group_id_field), group.getId());
         startActivity(newActivity);
     }
 
