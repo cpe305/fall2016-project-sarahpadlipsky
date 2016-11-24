@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,12 +22,13 @@ import io.realm.Realm;
 
 /**
  * Activity to assist with the log-in of a Google user.
+ * @author sarahpadlipsky
+ * @version November 19, 2016
  */
 public class Login extends AppCompatActivity implements
     GoogleApiClient.OnConnectionFailedListener,
     View.OnClickListener {
 
-  private static final String TAG = "LogInActivity";
   private static final int RC_SIGN_IN = 9001;
 
   private GoogleApiClient mGoogleApiClient;
@@ -87,7 +87,6 @@ public class Login extends AppCompatActivity implements
     if (opr.isDone()) {
       // If the user's cached credentials are valid, the OptionalPendingResult will be "done"
       // and the GoogleSignInResult will be available instantly.
-      Log.d(TAG, "Got cached sign-in");
       GoogleSignInResult result = opr.get();
       handleSignInResult(result);
     } else {
@@ -145,7 +144,6 @@ public class Login extends AppCompatActivity implements
   }
 
   private void handleSignInResult(GoogleSignInResult result) {
-    Log.d(TAG, "handleSignInResult:" + result.isSuccess());
     if (result.isSuccess()) {
       // Signed in successfully, show authenticated UI.
       GoogleSignInAccount acct = result.getSignInAccount();
@@ -197,7 +195,6 @@ public class Login extends AppCompatActivity implements
   public void onConnectionFailed(ConnectionResult connectionResult) {
     // An unresolvable error has occurred and Google APIs (including Sign-In) will not
     // be available.
-    Log.d(TAG, "onConnectionFailed:" + connectionResult);
   }
 
 

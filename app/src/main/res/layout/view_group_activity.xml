@@ -58,7 +58,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="16dp"
                 android:text="@string/pay_back_button"
-                android:onClick="payBack"/>
+                android:onClick="onClick"/>
 
             <Button
                 android:id="@+id/addBill"
@@ -68,7 +68,7 @@
                 android:textColor="@color/colorPrimaryDark"
                 android:text="Add Bill"
                 android:layout_centerInParent="true"
-                android:onClick="addBill"/>
+                android:onClick="onClick"/>
 
             <Button
                 android:id="@+id/IOU"
@@ -80,7 +80,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="16dp"
-                android:onClick="calculateIOU"
+                android:onClick="onClick"
                 android:text="@string/calculate_IOU_button"/>
         </RelativeLayout>
 

@@ -19,7 +19,7 @@ import io.realm.RealmResults;
  */
 public class ViewGroups extends ListActivity {
 
-  // Database connection
+  // Database connection.
   private Realm realm;
 
   /**
@@ -47,7 +47,7 @@ public class ViewGroups extends ListActivity {
             Group currentGroup = (Group) parent.getItemAtPosition(position);
             Intent newActivity = new Intent(view.getContext(), ViewGroup.class);
             // Send group name to next intent for querying purposes.
-            newActivity.putExtra(getString(R.string.group_id), currentGroup.getId());
+            newActivity.putExtra(getString(R.string.group_id_field), currentGroup.getId());
             realm.close();
             startActivity(newActivity);
           }
@@ -76,7 +76,7 @@ public class ViewGroups extends ListActivity {
     //Sets title of main page
     TextView text = (TextView) findViewById(R.id.username);
     User user = CurrentUser.getCurrentUser();
-    text.setText(user.getName() + getString(R.string.main_title));
+    text.setText(getString(R.string.view_groups_title, user.getName()));
   }
 
   /**
@@ -90,20 +90,34 @@ public class ViewGroups extends ListActivity {
 
   /**
    * On-Click method for "Add Group" button"
-   * @param view Necessary paramter for onClick function.
    */
-  public void createGroup(View view) {
+  public void createGroup() {
     Intent newActivity = new Intent(this, AddGroupActivity.class);
     startActivity(newActivity);
   }
 
   /**
    * On-Click method for "Add Group" button"
-   * @param view Necessary paramter for onClick function.
    */
-  public void login(View view) {
+  public void login() {
     Intent newActivity = new Intent(this, Login.class);
     startActivity(newActivity);
+  }
+
+  /**
+   * On-Click method for various buttons"
+   */
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.add:
+        createGroup();
+        break;
+      case R.id.backToLogin:
+        login();
+        break;
+      default:
+        break;
+    }
   }
 
   // TODO: Delete method.

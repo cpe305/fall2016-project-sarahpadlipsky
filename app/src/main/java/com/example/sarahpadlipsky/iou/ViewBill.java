@@ -31,21 +31,22 @@ public class ViewBill extends Activity {
 
     // Gets group name from main activity.
     Intent intent = getIntent();
-    String id = intent.getStringExtra("billID");
+    String id = intent.getStringExtra(getString(R.string.bill_id_field));
 
-    Bill bill = realm.where(Bill.class).contains("billID", id).findFirst();
+    Bill bill = realm.where(Bill.class).contains(getString(R.string.bill_id_field), id).findFirst();
 
+    // Sets the bill's name.
     TextView text = (TextView) findViewById(R.id.billName);
     text.setText(bill.getName());
-
+    // Sets the bill's description.
     TextView descriptionText = (TextView) findViewById(R.id.descriptionOfBillForViewBill);
-    descriptionText.setText("Description: " + bill.getDescription());
-
+    descriptionText.setText(getString(R.string.view_bill_description, bill.getDescription()));
+    // Sets the bill's user.
     TextView userText = (TextView) findViewById(R.id.userOfBillForViewBill);
-    userText.setText("User: " + bill.getUser());
-
+    userText.setText(getString(R.string.view_bill_user, bill.getUser()));
+    // Sets the bill's cost.
     TextView costText = (TextView) findViewById(R.id.amountOfBillForViewBill);
-    costText.setText("Cost: " + bill.getAmount());
+    costText.setText(getString(R.string.view_bill_cost, bill.getAmount()));
 
   }
 

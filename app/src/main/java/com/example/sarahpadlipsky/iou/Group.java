@@ -23,7 +23,6 @@ public class Group extends RealmObject {
   // The id number for the group.
   private String groupID;
 
-
   /**
    * Constructor for a group. Initializes the users list.
    */

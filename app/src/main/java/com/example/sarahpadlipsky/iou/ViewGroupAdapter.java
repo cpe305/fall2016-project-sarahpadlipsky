@@ -11,6 +11,11 @@ import java.math.BigDecimal;
 
 import io.realm.RealmList;
 
+/**
+ * Adapter for the ViewGroup ListView.
+ * @author sarahpadlipsky
+ * @version November 19, 2016
+ */
 class ViewGroupAdapter extends BaseAdapter {
 
   // Current list of users.

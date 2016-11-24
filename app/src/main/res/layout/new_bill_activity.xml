@@ -83,14 +83,14 @@
         android:background="@color/colorPrimaryDark"
         android:layout_gravity="bottom">
         <Button
-            android:id="@+id/createGroup"
+            android:id="@+id/addBill"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@color/background_material_light"
             android:textColor="@color/colorPrimaryDark"
             android:layout_width="185dp"
             android:text="Add Bill"
-            android:onClick="addBill"/>
+            android:onClick="onClick"/>
     </RelativeLayout>
 
 </LinearLayout>

@@ -1,7 +1,7 @@
 <resources>
+    <!-- General Strings -->
     <string name="app_name">IOU</string>
     <string name="group_name">name</string>
-    <string name="group_id">groupID</string>
     <string name="main_title">\'s Groups</string>
     <string name="add_group_button">Add group</string>
     <string name="calculate_IOU_button">Calculate IOU</string>
@@ -51,5 +51,31 @@
     <string name="desc_id_token_activity">Retrieving an ID Token for the user.</string>
     <string name="desc_auth_code_activity">Demonstrate retrieving an auth code for authorizing your server.</string>
     <string name="name_auth_code_activity">ServerAuthCodeActivity</string>
+
+    <!-- Add Group Activity -->
+    <string name="user_does_not_exist_title">User does not exist!</string>
+    <string name="user_does_not_exist_message">Please check your spelling and try again. Remember the user must have logged in before to be added to a group.</string>
+    <string name="user_already_exists_title">User already exists!</string>
+    <string name="user_already_exists_message">You have already added this user to the group.</string>
+
+    <!-- User Bills-->
+    <string name="user_bills_title">%1$s\'s Transactions</string>
+
+    <!-- View Bill -->
+    <string name="view_bill_description">Description: %1$s</string>
+    <string name="view_bill_user">User: %1$s</string>
+    <string name="view_bill_cost">Cost: %1$f</string>
+
+    <!-- View Group Adapter -->
+    <string name="money_owed_adapter">$%1$f</string>
+
+    <!-- View Groups -->
+    <string name="view_groups_title">%1$s\'s Groups</string>
+
+    <!-- Database retrieval -->
+    <string name="user_email_field">email</string>
+    <string name="group_id_field">groupID</string>
+    <string name="bill_id_field">billID</string>
+
 
 </resources>

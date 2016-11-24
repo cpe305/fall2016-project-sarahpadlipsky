@@ -50,7 +50,7 @@
             android:text="@string/add_group_button"
             android:background="@color/background_material_light"
             android:textColor="@color/colorPrimaryDark"
-            android:onClick="createGroup"/>
+            android:onClick="onClick"/>
 
         <Button
             android:id="@+id/backToLogin"
@@ -62,7 +62,7 @@
             android:text="Back to Log-in"
             android:background="@color/background_material_light"
             android:textColor="@color/colorPrimaryDark"
-            android:onClick="login"/>
+            android:onClick="onClick"/>
 
 
     </RelativeLayout>

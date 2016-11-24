@@ -13,6 +13,7 @@ import io.realm.annotations.Required;
  */
 
 public class User extends RealmObject {
+  // The specific id for the user
   @PrimaryKey
   private String id;
   // The name of the user

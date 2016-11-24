@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.math.BigDecimal;
-import java.text.NumberFormat;
 
 import io.realm.Realm;
 
@@ -21,9 +20,11 @@ import io.realm.Realm;
  */
 public class NewBill extends Activity implements AdapterView.OnItemSelectedListener {
 
+  // Database connection.
   private Realm realm;
-  private Spinner spinner;
+  // Current group that is receiving the new bill.
   private Group group;
+  // Current user who paid the new bill.
   private User user;
 
   /**
@@ -39,11 +40,11 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
 
     // Gets group name from main activity.
     Intent intent = getIntent();
-    String id = intent.getStringExtra("groupID");
+    String id = intent.getStringExtra(getString(R.string.group_id_field));
 
-    group = realm.where(Group.class).contains("groupID", id).findFirst();
+    group = realm.where(Group.class).contains(getString(R.string.group_id_field), id).findFirst();
 
-    spinner = (Spinner)findViewById(R.id.spinner);
+    Spinner spinner = (Spinner)findViewById(R.id.spinner);
 
     ArrayAdapter<User> adapter = new ArrayAdapter<>(this,
         android.R.layout.simple_list_item_1, group.getUsers());
@@ -79,9 +80,8 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
 
   /**
    * On-Click method for "Add Bill" button"
-   * @param view Necessary parameter for onClick function.
    */
-  public void addBill(View view) {
+  public void addBill() {
     // Gets the name of the bill.
     EditText billEditField = (EditText) findViewById(R.id.billName);
     final String billName = billEditField.getText().toString();
@@ -114,8 +114,21 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
     });
 
     Intent newActivity = new Intent(this, ViewGroup.class);
-    newActivity.putExtra(getString(R.string.group_id), group.getId());
+    newActivity.putExtra(getString(R.string.group_id_field), group.getId());
     startActivity(newActivity);
+  }
+
+  /**
+   * On-Click method for various buttons"
+   */
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.addBill:
+        addBill();
+        break;
+      default:
+        break;
+    }
   }
 
   /**

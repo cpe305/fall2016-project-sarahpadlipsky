@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit User"
-        android:onClick="submitUser"
+        android:onClick="onClick"
         android:layout_marginLeft="8dp"/>
 
 
@@ -86,14 +86,14 @@
         android:background="@color/colorPrimaryDark"
         android:layout_alignParentBottom="true">
         <Button
-            android:id="@+id/createGroup"
+            android:id="@+id/submitGroup"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:background="@color/background_material_light"
             android:textColor="@color/colorPrimaryDark"
             android:layout_width="185dp"
             android:text="@string/add_group_button"
-            android:onClick="submitGroup"/>
+            android:onClick="onClick"/>
         </RelativeLayout>
     </RelativeLayout>
 

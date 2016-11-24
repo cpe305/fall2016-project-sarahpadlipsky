@@ -12,7 +12,7 @@ import io.realm.RealmConfiguration;
  */
 public class IOUApplication extends Application {
 
-  // Database
+  // Database connection.
   Realm realm;
 
   /**

@@ -19,9 +19,9 @@ import io.realm.RealmResults;
 
 public class ViewGroup extends Activity {
 
-    // Database connection
+    // Database connection.
     private Realm realm;
-    private ListView listview;
+    // Current group.
     private Group group;
 
     /**
@@ -35,11 +35,11 @@ public class ViewGroup extends Activity {
 
         // Gets group name from main activity.
         Intent intent = getIntent();
-        String id = intent.getStringExtra(getString(R.string.group_id));
+        String id = intent.getStringExtra(getString(R.string.group_id_field));
 
         realm = Realm.getDefaultInstance();
-        RealmResults<Group> list = realm.where(Group.class).equalTo(getString(R.string.group_id),
-                id).findAll();
+        RealmResults<Group> list = realm.where(Group.class).equalTo(
+            getString(R.string.group_id_field), id).findAll();
         group = list.get(0);
         // Sets group name in view.
         TextView text = (TextView) findViewById(R.id.groupName);
@@ -48,7 +48,7 @@ public class ViewGroup extends Activity {
         TextView groupDescription = (TextView) findViewById(R.id.groupDescription);
         groupDescription.setText(group.getDescription());
 
-        listview = (ListView) findViewById(android.R.id.list);
+        ListView listview = (ListView) findViewById(android.R.id.list);
         listview.setAdapter(new ViewGroupAdapter(this, group.getUsers()));
 
         listview.setOnItemClickListener(
@@ -59,7 +59,8 @@ public class ViewGroup extends Activity {
                     User currentUser = (User) parent.getItemAtPosition(position);
                     Intent newActivity = new Intent(view.getContext(), UserBills.class);
                     // Send group name to next intent for querying purposes.
-                    newActivity.putExtra("email", currentUser.getEmail());
+                    newActivity.putExtra(getString(R.string.user_email_field),
+                        currentUser.getEmail());
                     realm.close();
                     startActivity(newActivity);
                 }
@@ -95,31 +96,46 @@ public class ViewGroup extends Activity {
 
     /**
      * On-Click method for "Pay Back" button"
-     * @param view Necessary paramter for onClick function.
      */
-    public void payBack(View view) {
+    public void payBack() {
         Intent newActivity = new Intent(this, PayBill.class);
         startActivity(newActivity);
     }
 
     /**
      * On-Click method for "Calculate IOU" button"
-     * @param view Necessary paramter for onClick function.
      */
-    public void calculateIOU(View view) {
+    public void calculateIOU() {
         Intent newActivity = new Intent(this, CalculateIOU.class);
         startActivity(newActivity);
     }
 
     /**
      * On-Click method for "Add Bill" button"
-     * @param view Necessary paramter for onClick function.
      */
-    public void addBill(View view) {
+    public void addBill() {
         Intent newActivity = new Intent(this, NewBill.class);
 
-        newActivity.putExtra("groupID", group.getId());
+        newActivity.putExtra(getString(R.string.group_id_field), group.getId());
         startActivity(newActivity);
+    }
+    /**
+     * On-Click method for various buttons"
+     */
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.payBack:
+                payBack();
+                break;
+            case R.id.IOU:
+                calculateIOU();
+                break;
+            case R.id.addBill:
+                addBill();
+                break;
+            default:
+                break;
+        }
     }
 
 }

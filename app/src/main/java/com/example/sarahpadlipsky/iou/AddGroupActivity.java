@@ -24,9 +24,16 @@ public class AddGroupActivity extends ListActivity {
   // List of users for new activity.
   private RealmList<User> userList;
 
+  // Alert if the user does not exist in the database.
   private AlertDialog alertDialogDB;
+
+  // Alert if the user already exsits in the list.
   private AlertDialog alertDialogList;
 
+  /**
+   * Android lifecycle function. Called when activity is opened for the first time.
+   * @param savedInstanceState Lifecycle parameter
+   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -43,8 +50,8 @@ public class AddGroupActivity extends ListActivity {
     setListAdapter(adapter);
 
     alertDialogDB = new AlertDialog.Builder(AddGroupActivity.this).create();
-    alertDialogDB.setTitle("User does not exist!");
-    alertDialogDB.setMessage("Please check your spelling and try again. Remember the user must have logged in before to be added to a group.");
+    alertDialogDB.setTitle(getString(R.string.user_does_not_exist_title));
+    alertDialogDB.setMessage(getString(R.string.user_does_not_exist_message));
     alertDialogDB.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
         new DialogInterface.OnClickListener() {
           @Override
@@ -54,8 +61,8 @@ public class AddGroupActivity extends ListActivity {
         });
 
     alertDialogList = new AlertDialog.Builder(AddGroupActivity.this).create();
-    alertDialogList.setTitle("User already exists!");
-    alertDialogList.setMessage("You have already added this user to the group.");
+    alertDialogList.setTitle(getString(R.string.user_already_exists_title));
+    alertDialogList.setMessage(getString(R.string.user_already_exists_message));
     alertDialogList.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
         new DialogInterface.OnClickListener() {
           @Override
@@ -94,9 +101,8 @@ public class AddGroupActivity extends ListActivity {
 
     /**
      * On-Click method for "Add Group" button"
-     * @param view Necessary paramter for onClick function.
      */
-    public void submitGroup(View view) {
+    public void submitGroup() {
       // Gets the name of the group.
       EditText nameEditField = (EditText) findViewById(R.id.nameOfGroup);
       final String groupName = nameEditField.getText().toString();
@@ -119,7 +125,7 @@ public class AddGroupActivity extends ListActivity {
           }
 
           for (User userInList : userList) {
-            User user = realm.where(User.class).equalTo("email",
+            User user = realm.where(User.class).equalTo(getString(R.string.user_email_field),
                 userInList.getEmail()).findFirst();
             user.addGroup(group);
           }
@@ -133,10 +139,8 @@ public class AddGroupActivity extends ListActivity {
 
     /**
      * On-Click method for "Add User" button"
-     * @param view Necessary paramter for onClick function.
-
      */
-    public void submitUser(View view) {
+    public void submitUser() {
       // Gets new user name.
       EditText userEditField = (EditText) findViewById(R.id.addUser);
       final String userName = userEditField.getText().toString();
@@ -146,12 +150,14 @@ public class AddGroupActivity extends ListActivity {
       realm.executeTransaction(new Realm.Transaction() {
         @Override
         public void execute(Realm realm) {
-          User user = realm.where(User.class).equalTo("email", userName).findFirst();
+          User user = realm.where(User.class).equalTo(getString(R.string.user_email_field),
+              userName).findFirst();
+          // If the user does not exist:
           if (user == null) {
             alertDialogDB.show();
           } else {
-
             boolean alreadyExists = false;
+            // Check if the user has been added.
             for (User currentUser : userList) {
               if (user.equals(currentUser)) {
                 alreadyExists = true;
@@ -164,7 +170,6 @@ public class AddGroupActivity extends ListActivity {
           }
         }
       });
-
       // Updates list adapter.
       ArrayAdapter<User>  adapter = new ArrayAdapter<>(this,
           android.R.layout.simple_list_item_1, userList);
@@ -172,4 +177,20 @@ public class AddGroupActivity extends ListActivity {
       // Clears user field.
       userEditField.setText("");
     }
+
+  /**
+   * On-Click method for various buttons"
+   */
+  public void onClick(View v) {
+    switch (v.getId()) {
+      case R.id.submitGroup:
+        submitGroup();
+        break;
+      case R.id.submitUser:
+        submitUser();
+        break;
+      default:
+        break;
+    }
+  }
 }
