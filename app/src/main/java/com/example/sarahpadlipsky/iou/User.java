@@ -66,28 +66,6 @@ public class User extends RealmObject {
   }
 
   /**
-   * @return The user's bills
-   */
-  public RealmList<Bill> getBills() {
-    return bills;
-  }
-
-  /**
-   * @param bill The bill to add to the user's bills
-   */
-  public void addBill(Bill bill) {
-    bills.add(bill);
-
-    double currentMoneyOwed = 0;
-
-    for (Bill currentBill : bills) {
-      currentMoneyOwed += currentBill.getAmount();
-    }
-
-    setMoneySpent(currentMoneyOwed);
-  }
-
-  /**
    * @return The name for the toString function
    */
 

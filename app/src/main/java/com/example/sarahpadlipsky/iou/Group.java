@@ -8,7 +8,7 @@ import io.realm.annotations.Required;
  * Represents a group of users of the IOU app.
  * @author cesiu
  * @author sarahpadlipsky
- * @version October 16, 2016
+ * @version Novemmber 24, 2016
  */
 public class Group extends RealmObject {
   // The name of the group
@@ -22,6 +22,8 @@ public class Group extends RealmObject {
   private RealmList<User> users;
   // The id number for the group.
   private String groupID;
+  // List of bills for given group.
+  private  RealmList<Bill> bills;
 
   /**
    * Constructor for a group. Initializes the users list.
@@ -98,6 +100,28 @@ public class Group extends RealmObject {
   public void setMoneySpent(double moneySpent) {
         totalMoneySpent = moneySpent;
     }
+
+  /**
+   * @return The user's bills
+   */
+  public RealmList<Bill> getBills() {
+    return bills;
+  }
+
+  /**
+   * @param bill The bill to add to the user's bills
+   */
+  public void addBill(Bill bill) {
+    bills.add(bill);
+
+    double currentMoneyOwed = 0;
+
+    for (Bill currentBill : bills) {
+      currentMoneyOwed += currentBill.getAmount();
+    }
+
+    setMoneySpent(currentMoneyOwed);
+  }
 
   /**
    * @return The name for the toString function

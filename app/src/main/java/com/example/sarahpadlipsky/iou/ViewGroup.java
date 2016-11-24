@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 /**
@@ -41,6 +42,8 @@ public class ViewGroup extends Activity {
         RealmResults<Group> list = realm.where(Group.class).equalTo(
             getString(R.string.group_id_field), id).findAll();
         group = list.get(0);
+
+        calculateEachUser(group.getUsers());
         // Sets group name in view.
         TextView text = (TextView) findViewById(R.id.groupName);
         text.setText(group.getName());
@@ -59,6 +62,8 @@ public class ViewGroup extends Activity {
                     User currentUser = (User) parent.getItemAtPosition(position);
                     Intent newActivity = new Intent(view.getContext(), UserBills.class);
                     // Send group name to next intent for querying purposes.
+                    newActivity.putExtra(getString(R.string.group_id_field),
+                        group.getId());
                     newActivity.putExtra(getString(R.string.user_email_field),
                         currentUser.getEmail());
                     realm.close();
@@ -67,6 +72,31 @@ public class ViewGroup extends Activity {
             });
     }
 
+    public void calculateEachUser(RealmList<User> users) {
+
+        for (final User user : users) {
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    user.setMoneySpent(0);
+
+                }
+            });
+        }
+
+        for (final Bill bill : group.getBills()) {
+
+            final User user = bill.getUser();
+
+            realm.executeTransaction(new Realm.Transaction() {
+                @Override
+                public void execute(Realm realm) {
+                    user.setMoneySpent(user.getMoneySpent() + bill.getAmount());
+                }
+            });
+
+        }
+    }
     /**
      * Android lifecycle function. Called when activity is closed.
      */

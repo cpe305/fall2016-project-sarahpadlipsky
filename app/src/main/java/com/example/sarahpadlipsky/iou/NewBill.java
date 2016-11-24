@@ -108,7 +108,7 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
         bill.setId(Long.toString(num));
         bill.setUser(user);
 
-        user.addBill(bill);
+        group.addBill(bill);
 
       }
     });

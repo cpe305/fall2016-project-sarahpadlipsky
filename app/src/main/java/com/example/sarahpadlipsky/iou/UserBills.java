@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import io.realm.Realm;
 
 /**
@@ -21,6 +23,9 @@ public class UserBills extends ListActivity {
 
   // Database connection.
   private Realm realm;
+
+  // Current user bills;
+  ArrayList<Bill> currentUserBills = new ArrayList<>();
 
   /**
    * Android lifecycle function. Called when activity is opened for the first time.
@@ -35,7 +40,11 @@ public class UserBills extends ListActivity {
 
     // Gets group name from main activity.
     Intent intent = getIntent();
+    String groupID = intent.getStringExtra(getString(R.string.group_id_field));
     String email = intent.getStringExtra(getString(R.string.user_email_field));
+
+    Group group = realm.where(Group.class).contains(getString(R.string.group_id_field),
+        groupID).findFirst();
 
     User user = realm.where(User.class).contains(getString(R.string.user_email_field),
         email).findFirst();
@@ -43,8 +52,14 @@ public class UserBills extends ListActivity {
     TextView text = (TextView) findViewById(R.id.titleAccount);
     text.setText(getString(R.string.user_bills_title, user.getName()));
 
+    for (Bill currentBill : group.getBills()) {
+      if (currentBill.getUser().getEmail().equals(user.getEmail())) {
+        currentUserBills.add(currentBill);
+      }
+    }
+
     ArrayAdapter<Bill> adapter = new ArrayAdapter<>(this,
-        android.R.layout.simple_list_item_1, user.getBills());
+        android.R.layout.simple_list_item_1, currentUserBills);
 
     setListAdapter(adapter);
 
