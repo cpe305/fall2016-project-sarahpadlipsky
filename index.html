@@ -22,30 +22,79 @@
       <h1>
 <a id="iou" class="anchor" href="#iou" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>IOU</h1>
 
-<p><a href="https://travis-ci.org/cpe305/fall2016-project-sarahpadlipsky"><img src="https://travis-ci.org/cpe305/fall2016-project-sarahpadlipsky.svg?branch=master" alt="Build Status"></a></p>
+<p>IOU is an Android application that helps groups keep track of expenses. This project was developed as an individual project for Professor Gudrun Socher’s CPE 305 at Cal Poly San Luis Obispo in Fall 2016.</p>
+
+<p><em>Sarah Padlipsky</em></p>
 
 <h2>
 <a id="purpose" class="anchor" href="#purpose" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Purpose</h2>
 
-<p>IOU is an Android application that helps groups keep track of expenses. This project was developed as an individual project for Professor Gudrun Socher’s CPE 305 at Cal Poly San Luis Obispo in Fall 2016.</p>
+<p>Today's world moves at an unprecedented pace. People in all stages of life find themselves struggling to keep up with the amount of responsibilities they have. </p>
 
-<p>By: Sarah Padlipsky</p>
+<p>An average mom has to plan their children's soccer team party, get a gift for her boss at work from the team, and plan Thanksgiving dinner for over 30 people. While exhausting, these three events are also costly if she does not make sure she gets paid back. That is where IOU comes in! </p>
 
-<h2>
-<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to Use</h2>
-
-<p>This application (in the near future) will be available for download on the Google Play Store. The application requires a Google account to use as well as a phone that is running Android as it’s OS. The application supports API Level 16 and above which is Jelly Bean and newer.</p>
-
-<p>Until it is on the Google Play Store, clone this directory and open up the project on Android Studio. Run this application on any emulator that supports API Level 16 and above.</p>
-
-<h2>
-<a id="functionality" class="anchor" href="#functionality" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Functionality</h2>
+<p>Now this mom can:</p>
 
 <ul>
-<li>Keep track of apartment bills, group trips, and more</li>
-<li>Users can log in, see their balances, and add new expenses</li>
-<li>Settle up instantly by notifying others you have paid them back</li>
+<li>Make three different groups for these events</li>
+<li>Add necessary people to all of these groups </li>
+<li>Keep track of what she's spent and what others have spent</li>
+<li>Make sure she gets paid back for her efforts!</li>
 </ul>
+
+<h2>
+<a id="walk-through-of-the-application" class="anchor" href="#walk-through-of-the-application" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Walk-Through of the Application</h2>
+
+<h3>
+<a id="step-1-logging-in" class="anchor" href="#step-1-logging-in" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 1: Logging in</h3>
+
+<h3>
+<a id="step-2-adding-groups" class="anchor" href="#step-2-adding-groups" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 2: Adding Groups</h3>
+
+<h3>
+<a id="step-3-viewing-groups" class="anchor" href="#step-3-viewing-groups" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 3: Viewing Groups</h3>
+
+<h3>
+<a id="step-4-adding-bills" class="anchor" href="#step-4-adding-bills" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 4: Adding Bills</h3>
+
+<h3>
+<a id="step-5-calculating-iou" class="anchor" href="#step-5-calculating-iou" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 5: Calculating IOU</h3>
+
+<h3>
+<a id="step-6-making-note-of-pay-back" class="anchor" href="#step-6-making-note-of-pay-back" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Step 6: Making Note of Pay Back</h3>
+
+<h2>
+<a id="current-view-of-architecture" class="anchor" href="#current-view-of-architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Current View of Architecture</h2>
+
+<p>The following class diagram shows the current architecture used in the IOU application. The architecture is a MVP pattern (Model-View-Presenter), which is a variation of the better known MVC architecture. </p>
+
+<p><img src="https://github.com/cpe305/fall2016-project-sarahpadlipsky/blob/master/Documents/diagrams/MVPOverview.png?raw=true" alt=""></p>
+
+<h3>
+<a id="what-is-mvp" class="anchor" href="#what-is-mvp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is MVP?</h3>
+
+<ul>
+<li>View is a layer that displays data and reacts to user actions. 
+
+<ul>
+<li>In this application, these are the XML files. </li>
+</ul>
+</li>
+<li>Model is a data access layer.
+
+<ul>
+<li>In this application, this is the java files; including logic and data containers. As well as the Realm Database. </li>
+</ul>
+</li>
+<li>Presenter is a layer that provides View with data from Model. 
+
+<ul>
+<li>In this application, this is the Activity classes.</li>
+</ul>
+</li>
+</ul>
+
+<p>Android uses the MVP pattern because the the view and the model classes do not interact. All changes must go through the activities to change the model/what the user sees.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/cpe305/fall2016-project-sarahpadlipsky">IOU</a> is maintained by <a href="https://github.com/cpe305">cpe305</a>.</span>
