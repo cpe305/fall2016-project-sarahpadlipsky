@@ -18,4 +18,4 @@ Until it is on the Google Play Store, clone this directory and open up the proje
 * Settle up instantly by notifying others you have paid them back
 
 ##More Information##
-https://github.com/cpe305/fall2016-project-sarahpadlipsky/blob/master/Documents/diagrams/MVPOverview.png?raw=true
+https://cpe305.github.io/fall2016-project-sarahpadlipsky/
