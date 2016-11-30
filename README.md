@@ -17,3 +17,5 @@ Until it is on the Google Play Store, clone this directory and open up the proje
 * Users can log in, see their balances, and add new expenses
 * Settle up instantly by notifying others you have paid them back
 
+##More Information##
+https://github.com/cpe305/fall2016-project-sarahpadlipsky/blob/master/Documents/diagrams/MVPOverview.png?raw=true
