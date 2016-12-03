@@ -25,6 +25,8 @@ public class ViewGroup extends Activity {
     // Current group.
     private Group group;
 
+    private ViewGroupAdapter adapter;
+
     /**
      * Android lifecycle function. Called when activity is opened for the first time.
      * @param savedInstanceState Lifecycle parameter
@@ -52,7 +54,8 @@ public class ViewGroup extends Activity {
         groupDescription.setText(group.getDescription());
 
         ListView listview = (ListView) findViewById(android.R.id.list);
-        listview.setAdapter(new ViewGroupAdapter(this, group.getUsers()));
+        adapter = new ViewGroupAdapter(this, group.getUsers());
+        listview.setAdapter(adapter);
 
         listview.setOnItemClickListener(
             new AdapterView.OnItemClickListener() {
@@ -70,6 +73,9 @@ public class ViewGroup extends Activity {
                     startActivity(newActivity);
                 }
             });
+
+        adapter.notifyDataSetChanged();
+
     }
 
     public void calculateEachUser(RealmList<User> users) {
@@ -86,14 +92,26 @@ public class ViewGroup extends Activity {
 
         for (final Bill bill : group.getBills()) {
 
-            final User user = bill.getSendUser();
+            final User sendUser = bill.getSendUser();
+            final User receiveUser = bill.getReceiveUser();
 
-            realm.executeTransaction(new Realm.Transaction() {
-                @Override
-                public void execute(Realm realm) {
-                    user.setMoneySpent(user.getMoneySpent() + bill.getAmount());
-                }
-            });
+
+            if (bill.getPayBackBill()) {
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        sendUser.setMoneySpent(sendUser.getMoneySpent() + bill.getAmount());
+                        receiveUser.setMoneySpent(receiveUser.getMoneySpent() - bill.getAmount());
+                    }
+                });
+            } else {
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        sendUser.setMoneySpent(sendUser.getMoneySpent() + bill.getAmount());
+                    }
+                });
+            }
 
         }
     }
@@ -113,6 +131,8 @@ public class ViewGroup extends Activity {
     protected void onStart() {
         super.onStart();
         realm = Realm.getDefaultInstance();
+        calculateEachUser(group.getUsers());
+        adapter.notifyDataSetChanged();
     }
 
     /**

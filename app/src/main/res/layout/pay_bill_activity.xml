@@ -53,11 +53,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="User of Bill:"
+        android:text="Sender of Bill:"
         android:layout_marginLeft="8dp"/>
 
     <Spinner
         android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Receiver of Bill:"
+        android:layout_marginLeft="8dp"/>
+
+    <Spinner
+        android:id="@+id/spinner2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -89,7 +101,7 @@
             android:background="@color/background_material_light"
             android:textColor="@color/colorPrimaryDark"
             android:layout_width="185dp"
-            android:text="Add Bill"
+            android:text="Add Pay Back Bill"
             android:onClick="onClick"/>
     </RelativeLayout>
 

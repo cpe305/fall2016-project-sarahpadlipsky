@@ -118,7 +118,8 @@ public class Group extends RealmObject {
     double currentMoneyOwed = 0;
 
     for (Bill currentBill : bills) {
-      currentMoneyOwed += currentBill.getAmount();
+      if (!bill.getPayBackBill())
+        currentMoneyOwed += currentBill.getAmount();
     }
 
     setMoneySpent(currentMoneyOwed);

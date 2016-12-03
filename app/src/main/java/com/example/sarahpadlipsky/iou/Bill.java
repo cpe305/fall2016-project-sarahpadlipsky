@@ -99,14 +99,14 @@ public class Bill extends RealmObject{
    * @return The user who paid the bill
    */
   public User getReceiveUser() {
-    return sendUser;
+    return receiveUser;
   }
 
   /**
-   * @param sendUser The unique id of the group
+   * @param receiveUser The unique id of the group
    */
-  public void setReceiveUser(User sendUser) {
-    this.sendUser = sendUser;
+  public void setReceiveUser(User receiveUser) {
+    this.receiveUser = receiveUser;
   }
 
   /**

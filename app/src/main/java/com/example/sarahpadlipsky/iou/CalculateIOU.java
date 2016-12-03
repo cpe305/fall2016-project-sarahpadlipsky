@@ -63,7 +63,7 @@ public class CalculateIOU extends ListActivity {
 
     payBack();
 
-    if (toPrint.size() == 0) {
+    if (toPrint.isEmpty()) {
       toPrint.add(getString(R.string.calculate_iou_empty_owe_list));
     }
 
@@ -92,14 +92,26 @@ public class CalculateIOU extends ListActivity {
 
     for (final Bill bill : group.getBills()) {
 
-      final User user = bill.getSendUser();
+      final User sendUser = bill.getSendUser();
+      final User receiveUser = bill.getReceiveUser();
 
-      realm.executeTransaction(new Realm.Transaction() {
-        @Override
-        public void execute(Realm realm) {
-          user.setMoneySpent(user.getMoneySpent() + bill.getAmount());
-        }
-      });
+
+      if (bill.getPayBackBill()) {
+        realm.executeTransaction(new Realm.Transaction() {
+          @Override
+          public void execute(Realm realm) {
+            sendUser.setMoneySpent(sendUser.getMoneySpent() + bill.getAmount());
+            receiveUser.setMoneySpent(receiveUser.getMoneySpent() - bill.getAmount());
+          }
+        });
+      } else {
+        realm.executeTransaction(new Realm.Transaction() {
+          @Override
+          public void execute(Realm realm) {
+            sendUser.setMoneySpent(sendUser.getMoneySpent() + bill.getAmount());
+          }
+        });
+      }
 
     }
 
