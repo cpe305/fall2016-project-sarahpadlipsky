@@ -29,9 +29,9 @@ public class Group extends RealmObject {
    * Constructor for a group. Initializes the users list.
    */
   public Group() {
-        users = new RealmList<>();
-        bills = new RealmList<>();
-    }
+    users = new RealmList<>();
+    bills = new RealmList<>();
+  }
 
   /**
    * @return The id of the group

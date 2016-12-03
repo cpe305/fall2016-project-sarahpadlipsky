@@ -17,11 +17,9 @@ public class User extends RealmObject {
   @PrimaryKey
   private String id;
   // The name of the user
-  @Required
   private String name;
   @Required
   private String email;
-  private  RealmList<Bill> bills;
   // The amount of money the user has paid
   private double moneySpent;
   // The amount of money the user still owes
@@ -34,7 +32,6 @@ public class User extends RealmObject {
    */
   public User() {
     groups = new RealmList<>();
-    bills = new RealmList<>();
   }
 
   /**

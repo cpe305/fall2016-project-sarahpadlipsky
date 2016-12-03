@@ -86,7 +86,7 @@ public class ViewGroup extends Activity {
 
         for (final Bill bill : group.getBills()) {
 
-            final User user = bill.getUser();
+            final User user = bill.getSendUser();
 
             realm.executeTransaction(new Realm.Transaction() {
                 @Override

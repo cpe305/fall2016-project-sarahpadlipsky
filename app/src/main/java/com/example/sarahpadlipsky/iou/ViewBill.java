@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
+
 import io.realm.Realm;
 
 /**
@@ -43,10 +45,12 @@ public class ViewBill extends Activity {
     descriptionText.setText(getString(R.string.view_bill_description, bill.getDescription()));
     // Sets the bill's user.
     TextView userText = (TextView) findViewById(R.id.userOfBillForViewBill);
-    userText.setText(getString(R.string.view_bill_user, bill.getUser()));
+    userText.setText(getString(R.string.view_bill_user, bill.getSendUser()));
     // Sets the bill's cost.
     TextView costText = (TextView) findViewById(R.id.amountOfBillForViewBill);
-    costText.setText(getString(R.string.view_bill_cost, bill.getAmount()));
+    BigDecimal parsed = new BigDecimal(bill.getAmount()).setScale(2,BigDecimal.ROUND_FLOOR);
+    final double cost = parsed.doubleValue();
+    costText.setText(getString(R.string.view_bill_cost, cost));
 
   }
 

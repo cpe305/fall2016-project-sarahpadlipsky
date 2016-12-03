@@ -18,7 +18,12 @@ public class Bill extends RealmObject{
   // The id number for the bill.
   private String billID;
   // The user who paid the bill.
-  private User user;
+  private User sendUser;
+  // Determines type of bill
+  private boolean isPayBackBill;
+  // The user receiving the bill (if payback).
+  private User receiveUser;
+
 
   /**
    * @return The name of the bill
@@ -79,15 +84,43 @@ public class Bill extends RealmObject{
   /**
    * @return The user who paid the bill
    */
-  public User getUser() {
-    return user;
+  public User getSendUser() {
+    return sendUser;
   }
 
   /**
-   * @param user The unique id of the group
+   * @param sendUser The unique id of the group
    */
-  public void setUser(User user) {
-    this.user = user;
+  public void setSendUser(User sendUser) {
+    this.sendUser = sendUser;
+  }
+
+  /**
+   * @return The user who paid the bill
+   */
+  public User getReceiveUser() {
+    return sendUser;
+  }
+
+  /**
+   * @param sendUser The unique id of the group
+   */
+  public void setReceiveUser(User sendUser) {
+    this.sendUser = sendUser;
+  }
+
+  /**
+   * @param isPayBackBill Determines whether the bill is a payback bill
+   */
+  public void setPayBackBill(boolean isPayBackBill) {
+    this.isPayBackBill = isPayBackBill;
+  }
+
+  /**
+   * @return Where the bill is a payback bill
+   */
+  public boolean getPayBackBill() {
+    return isPayBackBill;
   }
 
   @Override

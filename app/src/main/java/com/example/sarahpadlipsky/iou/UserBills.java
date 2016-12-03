@@ -53,7 +53,7 @@ public class UserBills extends ListActivity {
     text.setText(getString(R.string.user_bills_title, user.getName()));
 
     for (Bill currentBill : group.getBills()) {
-      if (currentBill.getUser().getEmail().equals(user.getEmail())) {
+      if (currentBill.getSendUser().getEmail().equals(user.getEmail())) {
         currentUserBills.add(currentBill);
       }
     }

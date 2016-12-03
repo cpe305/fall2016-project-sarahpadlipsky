@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * Test class for Bill.
  * @author sarahpadlipsky
- * @version November 19, 2016
+ * @version December 2, 2016
  */
 
 public class BillTests {
@@ -49,10 +49,23 @@ public class BillTests {
   }
 
   @Test
-  public void testBillUser() {
+  public void testBillSendUser() {
     User user = new User();
-    bill.setUser(user);
-    assertEquals(user, bill.getUser());
+    bill.setSendUser(user);
+    assertEquals(user, bill.getSendUser());
+  }
+
+  @Test
+  public void testBillReceiveUser() {
+    User user = new User();
+    bill.setReceiveUser(user);
+    assertEquals(user, bill.getReceiveUser());
+  }
+
+  @Test
+  public void testIfPayBackBill() {
+    bill.setPayBackBill(true);
+    assertEquals(true, bill.getPayBackBill());
   }
 
   public static void main(String [] args) {

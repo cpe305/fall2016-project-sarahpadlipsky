@@ -106,7 +106,7 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
         bill.setDescription(billDescription);
         bill.setAmount(cost);
         bill.setId(Long.toString(num));
-        bill.setUser(user);
+        bill.setSendUser(user);
 
         group.addBill(bill);
 

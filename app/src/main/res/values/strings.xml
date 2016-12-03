@@ -72,6 +72,11 @@
     <!-- View Groups -->
     <string name="view_groups_title">%1$s\'s Groups</string>
 
+    <!-- Calculate IOU -->
+    <string name="calculate_iou_title">IOU</string>
+    <string name="calculate_iou_empty_owe_list">No one owes anything!</string>
+
+
     <!-- Database retrieval -->
     <string name="user_email_field">email</string>
     <string name="group_id_field">groupID</string>

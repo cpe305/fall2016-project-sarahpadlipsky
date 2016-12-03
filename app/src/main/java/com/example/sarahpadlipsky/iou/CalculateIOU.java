@@ -64,7 +64,7 @@ public class CalculateIOU extends ListActivity {
     payBack();
 
     if (toPrint.size() == 0) {
-      toPrint.add("No one owes anything!");
+      toPrint.add(getString(R.string.calculate_iou_empty_owe_list));
     }
 
     ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
@@ -92,7 +92,7 @@ public class CalculateIOU extends ListActivity {
 
     for (final Bill bill : group.getBills()) {
 
-      final User user = bill.getUser();
+      final User user = bill.getSendUser();
 
       realm.executeTransaction(new Realm.Transaction() {
         @Override
@@ -167,13 +167,15 @@ public class CalculateIOU extends ListActivity {
 
           if(currentOverUser.getMoneyOwed() > amountOwed) {
             currentOverUser.setMoneyOwed(currentOverUser.getMoneyOwed()- amountOwed);
-            toPrint.add(underUser.getName() + " owes " + currentOverUser.getName() + " $" + String.format("%.2f", amountOwed));
+            toPrint.add(underUser.getName() + " owes " + currentOverUser.getName() + " $" +
+                String.format("%.2f", amountOwed));
             count = i;
             break;
           }
           else {
             amountOwed -= currentOverUser.getMoneyOwed();
-            toPrint.add(underUser.getName() + " owes " + currentOverUser.getName() + " $" + String.format("%.2f", currentOverUser.getMoneyOwed()));
+            toPrint.add(underUser.getName() + " owes " + currentOverUser.getName() + " $" +
+                String.format("%.2f", currentOverUser.getMoneyOwed()));
 
             realm.executeTransaction(new Realm.Transaction() {
               @Override
