@@ -40,6 +40,9 @@
         <activity
             android:name=".ViewBill" >
         </activity>
+        <activity
+            android:name=".ViewUsers" >
+        </activity>
     </application>
 
 </manifest>

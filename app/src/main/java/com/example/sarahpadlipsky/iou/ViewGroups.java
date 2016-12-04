@@ -105,6 +105,14 @@ public class ViewGroups extends ListActivity {
   }
 
   /**
+   * On-Click method for "View Users" button"
+   */
+  public void viewUsers() {
+    Intent newActivity = new Intent(this, ViewUsers.class);
+    startActivity(newActivity);
+  }
+
+  /**
    * On-Click method for various buttons"
    */
   public void onClick(View v) {
@@ -114,6 +122,9 @@ public class ViewGroups extends ListActivity {
         break;
       case R.id.backToLogin:
         login();
+        break;
+      case R.id.viewUsers:
+        viewUsers();
         break;
       default:
         break;

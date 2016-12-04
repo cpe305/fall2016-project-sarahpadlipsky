@@ -81,5 +81,4 @@ public class ViewBill extends Activity {
     realm.close();
   }
 
-
 }

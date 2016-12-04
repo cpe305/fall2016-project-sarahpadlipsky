@@ -54,9 +54,6 @@ public class CalculateIOU extends ListActivity {
 
     calculateTotalSpent(users);
 
-    for (User user : users)
-      System.out.println(user.getMoneySpent());
-
     eachPerson = group.getMoneySpent()/users.size();
 
     makeLists(users);
@@ -169,7 +166,7 @@ public class CalculateIOU extends ListActivity {
 
     int overList = over.size();
     int count = 0;
-    for (User underUser : under ) {
+    for (User underUser : under) {
 
       double amountOwed = eachPerson - underUser.getMoneySpent();
 
@@ -179,6 +176,7 @@ public class CalculateIOU extends ListActivity {
 
           if(currentOverUser.getMoneyOwed() > amountOwed) {
             currentOverUser.setMoneyOwed(currentOverUser.getMoneyOwed()- amountOwed);
+            System.out.println("in here 1");
             toPrint.add(underUser.getName() + " owes " + currentOverUser.getName() + " $" +
                 String.format("%.2f", amountOwed));
             count = i;
@@ -186,6 +184,7 @@ public class CalculateIOU extends ListActivity {
           }
           else {
             amountOwed -= currentOverUser.getMoneyOwed();
+            System.out.println("in here 2");
             toPrint.add(underUser.getName() + " owes " + currentOverUser.getName() + " $" +
                 String.format("%.2f", currentOverUser.getMoneyOwed()));
 
@@ -195,6 +194,7 @@ public class CalculateIOU extends ListActivity {
                 currentOverUser.setMoneyOwed(0);
               }
             });
+            break;
           }
       }
 
