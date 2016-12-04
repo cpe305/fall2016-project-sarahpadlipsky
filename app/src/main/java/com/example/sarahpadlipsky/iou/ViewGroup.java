@@ -170,6 +170,7 @@ public class ViewGroup extends Activity {
         newActivity.putExtra(getString(R.string.group_id_field), group.getId());
         startActivity(newActivity);
     }
+
     /**
      * On-Click method for various buttons"
      */

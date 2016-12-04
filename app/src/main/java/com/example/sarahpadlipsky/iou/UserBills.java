@@ -1,13 +1,18 @@
 package com.example.sarahpadlipsky.iou;
 
-import android.app.ListActivity;
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
@@ -16,16 +21,20 @@ import io.realm.Realm;
 /**
  * Represents the activity that displays a user's bills.
  * @author sarahpadlipsky
- * @version November 23, 2016
+ * @version December 3, 2016
  */
 
-public class UserBills extends ListActivity {
+public class UserBills extends Activity {
 
   // Database connection.
   private Realm realm;
-
   // Current user bills;
   ArrayList<Bill> currentUserBills = new ArrayList<>();
+  // Current user bills;
+  ArrayList<Bill> currentUserBillsPayBack = new ArrayList<>();
+
+  private ListView mListView1;
+  private ListView mListView2;
 
   /**
    * Android lifecycle function. Called when activity is opened for the first time.
@@ -54,21 +63,65 @@ public class UserBills extends ListActivity {
 
     for (Bill currentBill : group.getBills()) {
       if (currentBill.getSendUser().getEmail().equals(user.getEmail())) {
-        currentUserBills.add(currentBill);
+
+        if (currentBill.getPayBackBill()) {
+          currentUserBillsPayBack.add(currentBill);
+        }
+        else {
+          currentUserBills.add(currentBill);
+        }
       }
     }
 
-    ArrayAdapter<Bill> adapter = new ArrayAdapter<>(this,
-        android.R.layout.simple_list_item_1, currentUserBills);
+    // Sets TextView for regular bills.
+    TextView textViewRegular = (TextView) findViewById(R.id.regularBill);
+    if (currentUserBills.isEmpty()) {
+      textViewRegular.setText(getString(R.string.user_bills_regular_empty));
+    }
+    else {
+      textViewRegular.setText(getString(R.string.user_bills_regular_full));
+    }
 
-    setListAdapter(adapter);
+    // Sets TextView IOUs.
+    TextView textViewPayBack = (TextView) findViewById(R.id.payBackBill);
+    if (currentUserBillsPayBack.isEmpty()) {
+      textViewPayBack.setText(getString(R.string.user_bills_payback_empty));
+    }
+    else {
+      textViewPayBack.setText(getString(R.string.user_bills_payback_full));
+    }
 
-    ListView listview = getListView();
-    listview.setOnItemClickListener(
+    mListView1 = (ListView)findViewById(R.id.listView1);
+    mListView2 = (ListView)findViewById(R.id.listView2);
+
+    mListView1.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+        currentUserBills));
+    mListView2.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
+        currentUserBillsPayBack));
+
+    ListUtils.setDynamicHeight(mListView1);
+    ListUtils.setDynamicHeight(mListView2);
+
+    mListView1.setOnItemClickListener(
         new AdapterView.OnItemClickListener() {
           @Override
           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+            Bill currentBill = (Bill) parent.getItemAtPosition(position);
+            Intent newActivity = new Intent(view.getContext(), ViewBill.class);
+            // Send group name to next intent for querying purposes.
+            newActivity.putExtra(getString(R.string.bill_id_field), currentBill.getId());
+            realm.close();
+            startActivity(newActivity);
+          }
+        });
+
+    mListView2.setOnItemClickListener(
+        new AdapterView.OnItemClickListener() {
+          @Override
+          public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            // TODO: Change this to it's own activity.
             Bill currentBill = (Bill) parent.getItemAtPosition(position);
             Intent newActivity = new Intent(view.getContext(), ViewBill.class);
             // Send group name to next intent for querying purposes.
@@ -106,5 +159,32 @@ public class UserBills extends ListActivity {
     realm.close();
   }
 
+  /**
+   * Takes care of dynamically adjusting the height of list views.
+   */
+  public static class ListUtils {
+    /**
+     * Dynamically sets the height of given ListView.
+     * @param mListView ListView to adjust height of.
+     */
+     static void setDynamicHeight(ListView mListView) {
+      ListAdapter mListAdapter = mListView.getAdapter();
+      if (mListAdapter == null) {
+        // when adapter is null
+        return;
+      }
+      int height = 0;
+      int desiredWidth = View.MeasureSpec.makeMeasureSpec(mListView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+      for (int i = 0; i < mListAdapter.getCount(); i++) {
+        View listItem = mListAdapter.getView(i, null, mListView);
+        listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+        height += listItem.getMeasuredHeight();
+      }
+      ViewGroup.LayoutParams params = mListView.getLayoutParams();
+      params.height = height + (mListView.getDividerHeight() * (mListAdapter.getCount() - 1));
+      mListView.setLayoutParams(params);
+      mListView.requestLayout();
+    }
+  }
 
 }

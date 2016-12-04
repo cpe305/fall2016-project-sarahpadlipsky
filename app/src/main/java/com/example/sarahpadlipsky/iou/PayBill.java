@@ -16,7 +16,7 @@ import io.realm.Realm;
 /**
  * Represents the activity that allows a user to pay an IOU.
  * @author sarahpadlipsky
- * @version October 30, 2016
+ * @version December 2, 2016
  */
 public class PayBill extends Activity implements AdapterView.OnItemSelectedListener {
 
@@ -111,7 +111,7 @@ public class PayBill extends Activity implements AdapterView.OnItemSelectedListe
     final String costDescription = costEditField.getText().toString();
     BigDecimal parsed = new BigDecimal(costDescription).setScale(2,BigDecimal.ROUND_FLOOR);
     final double cost = parsed.doubleValue();
-    
+
     // Submits information to database.
     realm.executeTransaction(new Realm.Transaction() {
       @Override

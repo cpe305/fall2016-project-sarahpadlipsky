@@ -23,7 +23,6 @@ public class IOUApplication extends Application {
     super.onCreate();
     Realm.init(this.getBaseContext());
 
-    //TODO: Change migration technique before deploying.
     RealmConfiguration realmConfiguration = new RealmConfiguration.Builder().deleteRealmIfMigrationNeeded()
         .build();
     Realm.setDefaultConfiguration(realmConfiguration);

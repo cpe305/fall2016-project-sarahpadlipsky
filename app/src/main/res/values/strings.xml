@@ -60,6 +60,14 @@
 
     <!-- User Bills-->
     <string name="user_bills_title">%1$s\'s Transactions</string>
+    <string name="user_bills_regular_empty">No regular bills!</string>
+    <string name="user_bills_payback_empty">No IOUs!</string>
+    <string name="user_bills_regular_full">Regular Bills:</string>
+    <string name="user_bills_payback_full">IOUs:</string>
+
+
+
+
 
     <!-- View Bill -->
     <string name="view_bill_description">Description: %1$s</string>
