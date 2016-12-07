@@ -39,6 +39,7 @@
 <li>Make groups for various events</li>
 <li>Add necessary people to all of these groups </li>
 <li>Keep track of what they've spent and what others have spent</li>
+<li>View a list of all users and what they owe/are owed</li>
 <li>Make sure they gets paid back for their efforts!</li>
 </ul>
 
@@ -107,12 +108,35 @@
 
 <p>Android uses the MVP pattern because the the view and the model classes do not interact. All changes must go through the activities to change the model/what the user sees.</p>
 
-<p>[MORE EXPLANATION]</p>
+<h3>
+<a id="design-architecture" class="anchor" href="#design-architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Design Architecture</h3>
+
+<p>Here you can see the design structure of the project that includes class diagrams, activities, and XML files. As shown below, a persistence layer was added to show that the database always exists and is not created during runtime.</p>
+
+<p>The View layer lists the XML files used for visual representation of the various activities.</p>
+
+<p>The Presenter layer outlines the different screens that the user will see, which are determined by activities. Though not described in the diagram below, Activities communicate through intents which creates date flow. This is a built in attribute of Android.</p>
+
+<p>The Model layer describes the core data structures and log. A User represents someone who uses the application. A Bill represents money amounts being paid between users. A Group represents a collection of users and bills. The CurrentUser is a Singleton representation of the user that is signed in to the application. </p>
+
+<p><img src="https://github.com/cpe305/fall2016-project-sarahpadlipsky/blob/master/Documents/diagrams/IOUClassDiagram.png?raw=true" alt="Current IOU Class Diagram"></p>
+
+<h3>
+<a id="design-patterns" class="anchor" href="#design-patterns" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Design Patterns</h3>
+
+<p>The Singleton pattern was used in this project to control which user was logged into the application. Because only one instance of a user can be logged in on a single phone at a time, the Singleton Pattern worked so that different activities could access the current user's information. </p>
 
 <h2>
-<a id="improved-view-of-architecture" class="anchor" href="#improved-view-of-architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Improved View of Architecture</h2>
+<a id="lessons-learned-for-the-future" class="anchor" href="#lessons-learned-for-the-future" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lesson's Learned for the Future</h2>
 
-<p>During 305, new concepts were presented that would improve the current struct of the IOU application. For example, it was discussed earlier in the class that it is important to separate the logic from the view/controller. However, currently most of the logic resides in the controller. The new architecture below demonstrates this change. Design patterns were also the main focus of the class. The design patterns I would add are ___ and ___. </p>
+<h3>
+<a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture</h3>
+
+<p>When the initial architecture was made, there was a lack of understanding of design patterns and modular code. In the current architecture, the model section does not contain the logic of the code. Instead, it contains data container classes that are later store in the database.However I quickly learned the importance of separating the logic from the view/controller. Because the model represents data container class, the controller holds most of the logic. </p>
+
+<p>If I were to rewrite my application I would propose the following new architecture for the model classes:</p>
+
+<p>Design patterns were also the main focus of the class. The design patterns I would add are ___ and ___. </p>
 
 <h3>
 <a id="design-pattern-1" class="anchor" href="#design-pattern-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Design Pattern 1</h3>
