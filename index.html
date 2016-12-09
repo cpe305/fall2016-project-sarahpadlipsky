@@ -123,7 +123,7 @@
 
 <p>The Model layer describes the core data structures and log. A User represents someone who uses the application. A Bill represents money amounts being paid between users. A Group represents a collection of users and bills. The CurrentUser is a Singleton representation of the user that is signed in to the application. </p>
 
-<p><img src="https://github.com/cpe305/fall2016-project-sarahpadlipsky/blob/master/Documents/diagrams/IOUClassDiagram.png?raw=true" alt="Current IOU Class Diagram"></p>
+<p><img src="https://github.com/cpe305/fall2016-project-sarahpadlipsky/blob/master/Documents/diagrams/IOUClassDiagram.png?raw=true" alt="Current Architecture"></p>
 
 <h3>
 <a id="design-patterns" class="anchor" href="#design-patterns" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Design Patterns</h3>
@@ -136,19 +136,21 @@
 <h3>
 <a id="architecture" class="anchor" href="#architecture" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Architecture</h3>
 
-<p>When the initial architecture was made, there was a lack of understanding of design patterns and modular code. In the current architecture, the model section does not contain the logic of the code. Instead, it contains data container classes that are later store in the database.However I quickly learned the importance of separating the logic from the view/controller. Because the model represents data container class, the controller holds most of the logic. </p>
+<p>When the initial architecture was made, there was a lack of understanding of modular code. In the current architecture, the model section does not contain the logic of the code. Instead, it contains data container classes that are later store in the database. However I quickly learned the importance of separating the logic from the view/controller. Because the model represents data container class, the controller holds most of the logic. </p>
 
 <p>If I were to rewrite my application I would propose the following new architecture for the model classes:</p>
 
-<p>Design patterns were also the main focus of the class. The design patterns I would add are ___ and ___. </p>
+<p><img src="https://github.com/cpe305/fall2016-project-sarahpadlipsky/blob/master/Documents/diagrams/ImprovedModel.png?raw=true" alt="Improved Model"></p>
 
 <h3>
-<a id="design-pattern-1" class="anchor" href="#design-pattern-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Design Pattern 1</h3>
+<a id="design-patterns-1" class="anchor" href="#design-patterns-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Design Patterns</h3>
+
+<p>Through out the course of this class, I also learned a lot about design patterns. However, it became apparent that design patterns do not necessarily make an understandable structure. Through trying to apply different patterns to my model such as the Observer Pattern and the State Pattern, I learned the importance of applying design patterns when necessary.</p>
 
 <h3>
-<a id="design-pattern-2" class="anchor" href="#design-pattern-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Design Pattern 2</h3>
+<a id="concluding-thoughts" class="anchor" href="#concluding-thoughts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Concluding Thoughts</h3>
 
-<p>[ADD IMAGE]</p>
+<p>Overall, I enjoyed the process of seeing a project from start to finish. I was able to take my original architecture design and redesign it into a more modular and understandable structure. I enjoyed working with the Google Authentication service and Realm Database as these are new tools I have acquired. I look forward to improving these new skills with future projects;</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/cpe305/fall2016-project-sarahpadlipsky">IOU</a> is maintained by <a href="https://github.com/cpe305">cpe305</a>.</span>
