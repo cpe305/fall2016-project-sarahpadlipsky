@@ -132,33 +132,4 @@ public class ViewGroups extends ListActivity {
     }
   }
 
-  // TODO: Delete method.
-  /**
-   * Delete method to clear groups and users while developing.
-   */
-  private void delete() {
-    realm.executeTransaction(new Realm.Transaction() {
-      @Override
-      public void execute(Realm realm) {
-        RealmResults<Group> result = realm.where(Group.class).findAll();
-        result.deleteAllFromRealm();
-      }
-    });
-
-    realm.executeTransaction(new Realm.Transaction() {
-      @Override
-      public void execute(Realm realm) {
-        RealmResults<User> result = realm.where(User.class).findAll();
-        result.deleteAllFromRealm();
-      }
-    });
-
-    realm.executeTransaction(new Realm.Transaction() {
-      @Override
-      public void execute(Realm realm) {
-        RealmResults<Bill> result = realm.where(Bill.class).findAll();
-        result.deleteAllFromRealm();
-      }
-    });
-  }
 }

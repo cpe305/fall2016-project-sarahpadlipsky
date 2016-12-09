@@ -125,7 +125,6 @@ public class ViewUsers extends Activity {
           count = i;
           break;
         } else {
-          amountOwed -= currentOverUser.getMoneyOwed();
           if (underUser.equals(currentUser)) {
             Double amount = hashMap.get(currentOverUser.getName());
             hashMap.put(currentOverUser.getName(), amount + currentOverUser.getMoneyOwed());
