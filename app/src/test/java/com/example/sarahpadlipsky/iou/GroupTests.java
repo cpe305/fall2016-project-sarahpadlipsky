@@ -79,6 +79,7 @@ public class GroupTests {
     Bill bill1 = new Bill();
     Bill bill2 = new Bill();
 
+    bill2.setPayBackBill(true);
     RealmList<Bill> testList = new RealmList<>();
     testList.add(bill1);
     testList.add(bill2);

@@ -25,9 +25,9 @@ public class UserBills extends Activity {
 
   // Database connection.
   private Realm realm;
-  // Current user bills;
+  // Current user bills.
   ArrayList<Bill> currentUserBills = new ArrayList<>();
-  // Current user bills;
+  // Current user bills.
   ArrayList<Bill> currentUserBillsPayBack = new ArrayList<>();
 
   /**
@@ -157,6 +157,9 @@ public class UserBills extends Activity {
    * Takes care of dynamically adjusting the height of list views.
    */
   public static class ListUtils {
+
+
+    private ListUtils(){}
     /**
      * Dynamically sets the height of given ListView.
      * @param mListView ListView to adjust height of.

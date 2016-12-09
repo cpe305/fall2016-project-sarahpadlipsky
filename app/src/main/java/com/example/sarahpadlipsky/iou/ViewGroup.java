@@ -172,7 +172,8 @@ public class ViewGroup extends Activity {
     }
 
     /**
-     * On-Click method for various buttons"
+     * On-Click method for various buttons
+     * @param v Current view
      */
     public void onClick(View v) {
         switch (v.getId()) {

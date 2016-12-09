@@ -86,6 +86,9 @@ public class ViewUsers extends Activity {
 
   }
 
+  /**
+   * Populates HashMap.
+   */
   public void populateHashMap() {
     for (User user : listOfUniqueUsers) {
       hashMap.put(user.getName(), 0.0);
