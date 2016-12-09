@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+                android:layout_width="match_parent"
               android:layout_height="match_parent">
 
     <RelativeLayout
@@ -24,56 +25,70 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Bill Name:"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/title"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/billName"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/textView1"/>
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Description of Bill:"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/billName"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/descriptionOfBill"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/textView2"/>
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="User of Bill:"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/descriptionOfBill"
+    />
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView3"/>
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Cost of Bill:"
-        android:layout_marginLeft="8dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_below="@+id/spinner"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/costOfBill"
         android:layout_marginLeft="8dp"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal"
+        android:layout_below="@+id/textView4"
+    />
 
 
     <RelativeLayout
@@ -81,7 +96,7 @@
         android:layout_height="150dp"
         android:orientation="horizontal"
         android:background="@color/colorPrimaryDark"
-        android:layout_gravity="bottom">
+        android:layout_alignParentBottom="true">
         <Button
             android:id="@+id/addBill"
             android:layout_height="wrap_content"
@@ -93,4 +108,4 @@
             android:onClick="onClick"/>
     </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

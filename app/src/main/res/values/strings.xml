@@ -65,13 +65,10 @@
     <string name="user_bills_regular_full">Regular Bills:</string>
     <string name="user_bills_payback_full">IOUs:</string>
 
-
-
-
-
     <!-- View Bill -->
     <string name="view_bill_description">Description: %1$s</string>
-    <string name="view_bill_user">User: %1$s</string>
+    <string name="view_bill_user">Send User: %1$s</string>
+    <string name="view_bill_receiver_user">Receiver User: %1$s</string>
     <string name="view_bill_cost">Cost: %1$f</string>
 
     <!-- View Group Adapter -->

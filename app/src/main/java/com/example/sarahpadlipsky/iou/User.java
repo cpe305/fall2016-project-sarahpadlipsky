@@ -9,9 +9,8 @@ import io.realm.annotations.Required;
  * Represents a user of the IOU app.
  * @author cesiu
  * @author sarahpadlipsky
- * @version October 16, 2016
+ * @version December 8, 2016
  */
-
 public class User extends RealmObject {
   // The specific id for the user
   @PrimaryKey
@@ -61,10 +60,6 @@ public class User extends RealmObject {
   public void setEmail(String email) {
     this.email = email;
   }
-
-  /**
-   * @return The name for the toString function
-   */
 
   /**
    * @return The amount of money the user has paid

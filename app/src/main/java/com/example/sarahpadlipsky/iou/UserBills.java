@@ -1,12 +1,9 @@
 package com.example.sarahpadlipsky.iou;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
@@ -32,9 +29,6 @@ public class UserBills extends Activity {
   ArrayList<Bill> currentUserBills = new ArrayList<>();
   // Current user bills;
   ArrayList<Bill> currentUserBillsPayBack = new ArrayList<>();
-
-  private ListView mListView1;
-  private ListView mListView2;
 
   /**
    * Android lifecycle function. Called when activity is opened for the first time.
@@ -91,8 +85,9 @@ public class UserBills extends Activity {
       textViewPayBack.setText(getString(R.string.user_bills_payback_full));
     }
 
-    mListView1 = (ListView)findViewById(R.id.listView1);
-    mListView2 = (ListView)findViewById(R.id.listView2);
+
+    ListView mListView1 = (ListView)findViewById(R.id.listView1);
+    ListView mListView2 = (ListView)findViewById(R.id.listView2);
 
     mListView1.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,
         currentUserBills));
@@ -121,9 +116,8 @@ public class UserBills extends Activity {
           @Override
           public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            // TODO: Change this to it's own activity.
             Bill currentBill = (Bill) parent.getItemAtPosition(position);
-            Intent newActivity = new Intent(view.getContext(), ViewBill.class);
+            Intent newActivity = new Intent(view.getContext(), ViewPayBackBill.class);
             // Send group name to next intent for querying purposes.
             newActivity.putExtra(getString(R.string.bill_id_field), currentBill.getId());
             realm.close();

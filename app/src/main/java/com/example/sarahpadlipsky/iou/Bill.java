@@ -3,7 +3,7 @@ package com.example.sarahpadlipsky.iou;
 import io.realm.RealmObject;
 
 /**
- * Represents a blil made by a user.
+ * Represents a bill made by a user.
  * @author sarahpadlipsky
  * @version November 19, 2016
  */
@@ -23,7 +23,6 @@ public class Bill extends RealmObject{
   private boolean isPayBackBill;
   // The user receiving the bill (if payback).
   private User receiveUser;
-
 
   /**
    * @return The name of the bill

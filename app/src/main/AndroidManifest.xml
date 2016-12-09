@@ -43,6 +43,9 @@
         <activity
             android:name=".ViewUsers" >
         </activity>
+        <activity
+            android:name=".ViewPayBackBill" >
+        </activity>
     </application>
 
 </manifest>

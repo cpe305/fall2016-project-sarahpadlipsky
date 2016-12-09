@@ -104,7 +104,6 @@ public class Login extends AppCompatActivity implements
     }
   }
 
-
   /**
    * Adds logged in user to database if it is a new user.
    * @param acct The account of the signed in user.
@@ -131,7 +130,6 @@ public class Login extends AppCompatActivity implements
 
   }
 
-
   @Override
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
@@ -150,7 +148,6 @@ public class Login extends AppCompatActivity implements
 
       addUserToDB(acct);
 
-
       mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
       updateUI(true);
     } else {
@@ -158,7 +155,6 @@ public class Login extends AppCompatActivity implements
       updateUI(false);
     }
   }
-
 
   /**
    * On-click method to start up GoogleApiClient sign-up.
@@ -196,7 +192,6 @@ public class Login extends AppCompatActivity implements
     // An unresolvable error has occurred and Google APIs (including Sign-In) will not
     // be available.
   }
-
 
   /**
    * Method to show progress dialog message.

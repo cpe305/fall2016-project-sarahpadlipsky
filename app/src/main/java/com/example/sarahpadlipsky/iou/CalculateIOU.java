@@ -49,7 +49,6 @@ public class CalculateIOU extends ListActivity {
     // Users for current group.
     RealmList<User> users = group.getUsers();
 
-
     calculateEachUser(users);
 
     calculateTotalSpent(users);
@@ -176,15 +175,12 @@ public class CalculateIOU extends ListActivity {
 
           if(currentOverUser.getMoneyOwed() > amountOwed) {
             currentOverUser.setMoneyOwed(currentOverUser.getMoneyOwed()- amountOwed);
-            System.out.println("in here 1");
             toPrint.add(underUser.getName() + " owes " + currentOverUser.getName() + " $" +
                 String.format("%.2f", amountOwed));
             count = i;
             break;
           }
           else {
-            amountOwed -= currentOverUser.getMoneyOwed();
-            System.out.println("in here 2");
             toPrint.add(underUser.getName() + " owes " + currentOverUser.getName() + " $" +
                 String.format("%.2f", currentOverUser.getMoneyOwed()));
 

@@ -145,7 +145,6 @@ public class AddGroupActivity extends ListActivity {
       EditText userEditField = (EditText) findViewById(R.id.addUser);
       final String userName = userEditField.getText().toString();
 
-
       // Submits user to database.
       realm.executeTransaction(new Realm.Transaction() {
         @Override
@@ -180,6 +179,7 @@ public class AddGroupActivity extends ListActivity {
 
   /**
    * On-Click method for various buttons"
+   * @param v
    */
   public void onClick(View v) {
     switch (v.getId()) {

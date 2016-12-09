@@ -54,6 +54,7 @@ public class PayBill extends Activity implements AdapterView.OnItemSelectedListe
     spinnerReceive.setAdapter(adapter);
     spinnerReceive.setOnItemSelectedListener(this);
   }
+
   /**
    * On-Click method for items in drop down
    * @param parent Necessary parameter for function

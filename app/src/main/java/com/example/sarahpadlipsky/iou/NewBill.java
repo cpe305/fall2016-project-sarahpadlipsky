@@ -73,9 +73,7 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
    */
   @Override
   public void onNothingSelected(AdapterView<?> adapterView) {
-
     user = group.getUsers().get(0);
-
   }
 
   /**
@@ -93,7 +91,6 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
     final String costDescription = costEditField.getText().toString();
     BigDecimal parsed = new BigDecimal(costDescription).setScale(2,BigDecimal.ROUND_FLOOR);
     final double cost = parsed.doubleValue();
-
 
     // Submits information to database.
     realm.executeTransaction(new Realm.Transaction() {

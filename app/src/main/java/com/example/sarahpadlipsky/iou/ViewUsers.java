@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.Iterator;
 
 import io.realm.Realm;
@@ -15,7 +15,7 @@ import io.realm.RealmList;
 /**
  * Represents the activity that displays all users.
  * @author sarahpadlipsky
- * @version December 3, 2016
+ * @version December 8, 2016
  */
 public class ViewUsers extends Activity {
 
@@ -32,9 +32,10 @@ public class ViewUsers extends Activity {
   private ArrayList<User> under = new ArrayList<>();
   // Users who have spent less than their share.
   private ArrayList<User> over = new ArrayList<>();
-  Hashtable<String, Double> hashMap = new Hashtable<>();
+  HashMap<String, Double> hashMap = new HashMap<>();
   // Money each person owes.
   private double eachPerson = 0;
+
   /**
    * Android lifecycle function. Called when activity is opened for the first time.
    * @param savedInstanceState Lifecycle parameter
@@ -58,7 +59,6 @@ public class ViewUsers extends Activity {
 
     populateHashMap();
 
-
     for (Group currentGroup: currentUser.getGroups()) {
       group = currentGroup;
       RealmList<User> users = currentGroup.getUsers();
@@ -71,7 +71,6 @@ public class ViewUsers extends Activity {
 
     for (final User user : listOfUniqueUsers) {
       final double amount = hashMap.get(user.getName());
-      System.out.println("AMOUNT IS " + amount);
       realm.executeTransaction(new Realm.Transaction() {
         @Override
         public void execute(Realm realm) {
@@ -94,7 +93,6 @@ public class ViewUsers extends Activity {
 
   }
 
-
   /**
    * Calculates who owes who money.
    */
@@ -112,8 +110,6 @@ public class ViewUsers extends Activity {
 
         if (currentOverUser.getMoneyOwed() > amountOwed) {
           currentOverUser.setMoneyOwed(currentOverUser.getMoneyOwed() - amountOwed);
-
-
 
           if (underUser.equals(currentUser)) {
             double amount = hashMap.get(currentOverUser.getName());
@@ -230,11 +226,12 @@ public class ViewUsers extends Activity {
           }
         });
       }
-
     }
-
   }
 
+  /**
+   * Gets list of unique users that the current user interacts with.
+   */
   public void getUniqueUsers() {
 
     for (Group currentGroup : currentUser.getGroups()) {
