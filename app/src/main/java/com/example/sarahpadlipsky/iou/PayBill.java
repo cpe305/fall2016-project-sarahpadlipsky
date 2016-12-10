@@ -85,7 +85,8 @@ public class PayBill extends Activity implements AdapterView.OnItemSelectedListe
   public void onNothingSelected(AdapterView<?> adapterView) {}
 
   /**
-   * On-Click method for various buttons"
+   * On-Click method for various buttons
+   * @param v Current view
    */
   public void onClick(View v) {
     switch (v.getId()) {

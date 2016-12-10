@@ -72,7 +72,7 @@ class ViewGroupAdapter extends BaseAdapter {
     BigDecimal parsed = new BigDecimal(moneySpent).setScale(2,BigDecimal.ROUND_FLOOR);
     final double cost = parsed.doubleValue();
 
-    moneyOwed.setText("$" + String.valueOf(cost));
+    moneyOwed.setText("$" + cost);
 
     return vi;
   }

@@ -78,7 +78,11 @@ public class ViewGroup extends Activity {
 
     }
 
-    public void calculateEachUser(RealmList<User> users) {
+  /**
+   * Calculates how much each user owes
+   * @param users Users in this current group.
+   */
+  public void calculateEachUser(RealmList<User> users) {
 
         for (final User user : users) {
             realm.executeTransaction(new Realm.Transaction() {

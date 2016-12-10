@@ -48,7 +48,8 @@ public class ViewBill extends Activity {
     userText.setText(getString(R.string.view_bill_user, bill.getSendUser()));
     // Sets the bill's cost.
     TextView costText = (TextView) findViewById(R.id.amountOfBillForViewBill);
-    BigDecimal parsed = new BigDecimal(bill.getAmount()).setScale(2,BigDecimal.ROUND_FLOOR);
+    BigDecimal parsed = BigDecimal.valueOf((long) bill.getAmount(), 0);
+
     final double cost = parsed.doubleValue();
     costText.setText(getString(R.string.view_bill_cost, cost));
 

@@ -10,7 +10,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 /**
  * Represents the main activity that shows the list of groups that the user is apart of.

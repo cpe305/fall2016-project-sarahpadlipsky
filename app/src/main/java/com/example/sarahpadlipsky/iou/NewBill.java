@@ -117,6 +117,7 @@ public class NewBill extends Activity implements AdapterView.OnItemSelectedListe
 
   /**
    * On-Click method for various buttons"
+   * @param v Current view
    */
   public void onClick(View v) {
     switch (v.getId()) {
