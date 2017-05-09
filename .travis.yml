@@ -17,9 +17,9 @@ licenses:
     - android-sdk-license-c81a61d9
     - android-sdk-license.*
     - android.*
-addons:
-  sonarqube:
-    organization: "305"
+#addons:
+#  sonarqube:
+#    organization: "305"
     
 before_script:
   # Create and start emulator
