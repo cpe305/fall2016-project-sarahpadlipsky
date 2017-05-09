@@ -2,7 +2,7 @@
 sonarqube {
     //noinspection GroovyAssignabilityCheck
     properties {
-        property "sonar.host.url", "http://smartr.cs.hm.edu:9000"
+        //property "sonar.host.url", "http://smartr.cs.hm.edu:9000"
 
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.sources", "src/main/java,src/main/res" // first defines where the java files are, the second where the xml files are
